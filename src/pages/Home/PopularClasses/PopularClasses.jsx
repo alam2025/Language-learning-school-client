@@ -13,7 +13,7 @@ const PopularClasses = () => {
             <div className='my-container my-20'>
                   <SectionTitle heading={'Popular courses'} subHeading={'Only the Best'}></SectionTitle>
 
-                 <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                 <div className=' justify-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-8'>
                   {
 
                         classes.map(item=><PopularClassCard key={item._id} item={item}></PopularClassCard>)

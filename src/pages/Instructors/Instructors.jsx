@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionBanner from '../Shared/SectionBanner';
 
 const Instructors = () => {
       return (
             <div>
-                  Instrigsfrjg
+                  <SectionBanner title={'Instructors'} route={'Home | Instructors'}></SectionBanner>
             </div>
       );
 };

@@ -9,3 +9,7 @@
 .my-container{
   @apply md:w-[90%] lg:w-[85%] mx-auto
 }
+
+.active{
+ @apply bg-slate-800 text-white font-semibold 
+}

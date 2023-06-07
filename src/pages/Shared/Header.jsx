@@ -1,35 +1,41 @@
-import { Link, NavLink } from "react-router-dom";
-import logo from '../../assets/logo.png'
+import { Link, NavLink, useLocation } from "react-router-dom";
+import logo from '../../assets/black-logo.png'
+import { useState } from "react";
 
 const Header = () => {
+      const location = useLocation()
       const navTabs = (
             <>
                   <li>
-                        <NavLink exact to="/" activeClassName="active-link">
+                        <Link  to="/"
+                         className={`${location?.pathname ==='/'?'active':""}`}>
                               Home
-                        </NavLink>
+                        </Link>
                   </li>
                   <li>
-                        <NavLink exact to="/instructors" activeClassName="active-link">
+                        <Link  to="/instructors"
+                        className={`${location?.pathname ==='/instructors'?'active':""}`} >
                               Instructors
-                        </NavLink>
+                        </Link>
                   </li>
                   <li>
-                        <NavLink to="/classes" activeClassName="active-link">
+                        <Link to="/classes"
+                        className={`${location?.pathname ==='/classes'?'active':""}`} >
                               Classes
-                        </NavLink>
+                        </Link>
                   </li>
                   <li>
-                        <NavLink to="/dashboard" activeClassName="active-link">
+                        <Link to="/dashboard" 
+                        className={`${location?.pathname ==='/dashboard'?'active':""}`}>
                               Dashboard
-                        </NavLink>
+                        </Link>
                   </li>
             </>
       );
 
       return (
             <>
-                  <div className="navbar fixed md:px-[5%] bg-opacity-60 bg-black text-white z-10  bg-base-100  ">
+                  <div className="navbar  fixed md:px-[5%] bg-white text-black z-10 bg-base-100 border-b-2 shadow-lg">
                         <div className="navbar-start">
                               <div className="dropdown">
                                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -55,13 +61,23 @@ const Header = () => {
                                           {navTabs}
                                     </ul>
                               </div>
-                              <Link><img className=" w-[200px] " src={logo} alt="Language Learning School" /></Link>
+                              <Link to="/">
+                                    <img className="w-[200px]" src={logo} alt="Language Learning School" />
+                              </Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
-                              <ul className="menu  menu-horizontal px-1">{navTabs}</ul>
+                              <ul className="menu menu-horizontal px-1">{navTabs}</ul>
                         </div>
-                        <div className="navbar-end">
-                              <a className="btn">Button</a>
+                        <div className="navbar-end nav-item">
+                             <ul>
+                              <li> <Link
+                              
+                               to="/login" 
+                               className={`${location?.pathname ==='/login'?' active':''} px-3 py-2 rounded-md`}
+                               >
+                                    Login
+                              </Link></li>
+                             </ul>
                         </div>
                   </div>
             </>
