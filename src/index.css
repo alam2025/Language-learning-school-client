@@ -6,3 +6,6 @@
  font-size:larger
 }
 
+.my-container{
+  @apply md:w-[90%] lg:w-[85%] mx-auto
+}

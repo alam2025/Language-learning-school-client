@@ -1,0 +1,82 @@
+[
+      {
+            "_id": "611e84078e33b9aaf47c2e01",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "English for Beginners",
+            "instructor": "John Smith",
+            "seats": 20,
+            "price": 99.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e02",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Spanish Immersion",
+            "instructor": "Maria Rodriguez",
+            "seats": 15,
+            "price": 149.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e03",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "French Conversation",
+            "instructor": "Jeanne Dubois",
+            "seats": 10,
+            "price": 129.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e04",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "German Grammar Masterclass",
+            "instructor": "Hans Müller",
+            "seats": 8,
+            "price": 179.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e05",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Italian for Travelers",
+            "instructor": "Giuseppe Rossi",
+            "seats": 12,
+            "price": 109.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e06",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Mandarin Chinese Crash Course1",
+            "instructor": "Li Wei",
+            "seats": 15,
+            "price": 149.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e07",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Japanese Kanji Workshop",
+            "instructor": "Satoshi Tanaka",
+            "seats": 10,
+            "price": 139.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e08",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Russian Language Intensive",
+            "instructor": "Anastasia Ivanova",
+            "seats": 8,
+            "price": 169.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e09",
+            "image": "https://i.ibb.co/8ghpJgg/class2.jpg",
+            "name": "Portuguese Pronunciation Masterclass",
+            "instructor": "Pedro Silva",
+            "seats": 10,
+            "price": 119.99
+      },
+      {
+            "_id": "611e84078e33b9aaf47c2e10",
+            "image": "https://example.com/course10.jpg",
+            "name": "Arabic Calligraphy Workshop",
+            "instructor": "Ahmed Khalid",
+            "seats": 12,
+            "price": 129.99
+      }
+]

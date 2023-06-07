@@ -1,7 +1,8 @@
 [
       {
             "_id": "1",
-            "bannerImg": "/src/assets/banner/b5.svg",
+            "bannerImg": "/src/assets/banner/bg4.jpg",
+            
             "title": "To have another language is to possess a second soul."
       },
       {
@@ -17,7 +18,7 @@
       },
       {
             "_id": "4",
-            "bannerImg": "/src/assets/banner/bg4.jpg",
+            "bannerImg": "/src/assets/banner/b5.svg",
             "title": "Teaching Turning Today’s Learners Into Tomorrow’s Leaders"
       }
 ]
