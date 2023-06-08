@@ -1,8 +1,19 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-const GoogleLogin = () => {
+import { useNavigate } from 'react-router-dom';
+const SocialLogin = () => {
       const { googleSignIn } = useContext(AuthContext);
+      const navigate= useNavigate()
+
+
+      const handlegooglesignIn = () => {
+            googleSignIn()
+            .then(result=>{
+                  console.log(result.user);
+                  navigate('/')
+            }).catch(error=>console.log(error.message))
+       }
       return (
             <div className=' flex gap-4'>
                   <button className="btn btn-circle btn-outline">
@@ -18,4 +29,4 @@ const GoogleLogin = () => {
       );
 };
 
-export default GoogleLogin;
+export default SocialLogin;

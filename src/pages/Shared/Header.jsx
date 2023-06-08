@@ -1,35 +1,40 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../../assets/black-logo.png'
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
       const location = useLocation()
+      const { user,logOut } = useContext(AuthContext)
+      const [isHovering, setIsHovering] = useState(false);
+      const navigate= useNavigate()
       const navTabs = (
             <>
                   <li>
-                        <Link  to="/"
-                         className={`${location?.pathname ==='/'?'active':""}`}>
+                        <Link to="/"
+                              className={`${location?.pathname === '/' ? 'active' : ""}`}>
                               Home
                         </Link>
                   </li>
                   <li>
-                        <Link  to="/instructors"
-                        className={`${location?.pathname ==='/instructors'?'active':""}`} >
+                        <Link to="/instructors"
+                              className={`${location?.pathname === '/instructors' ? 'active' : ""}`} >
                               Instructors
                         </Link>
                   </li>
                   <li>
-                        <Link to="/classes"
-                        className={`${location?.pathname ==='/classes'?'active':""}`} >
-                              Classes
+                        <Link to="/courses"
+                              className={`${location?.pathname === '/courses' ? 'active' : ""}`} >
+                              Courses
                         </Link>
                   </li>
                   <li>
-                        <Link to="/dashboard" 
-                        className={`${location?.pathname ==='/dashboard'?'active':""}`}>
+                        <Link to="/dashboard"
+                              className={`${location?.pathname === '/dashboard' ? 'active' : ""}`}>
                               Dashboard
                         </Link>
                   </li>
+                  <li>{user && <button onClick={()=>logOut().then(()=>{navigate('/')})} className=" btn btn-outline btn-secondary">Logout</button>}</li>
             </>
       );
 
@@ -69,15 +74,35 @@ const Header = () => {
                               <ul className="menu menu-horizontal px-1">{navTabs}</ul>
                         </div>
                         <div className="navbar-end nav-item">
-                             <ul>
-                              <li> <Link
-                              
-                               to="/login" 
-                               className={`${location?.pathname ==='/login'?' active':''} px-3 py-2 rounded-md`}
-                               >
-                                    Login
-                              </Link></li>
-                             </ul>
+                              <ul>
+                                    {
+                                          user ? <>
+                                                <div className=" relative">
+                                                      {/* <img className=" rounded-full w-[70px]" src={user.photoURL} alt="" /> */}
+                                                      <img
+                                                            style={{ width: '60px', height: '60px' }}
+                                                            className=' bg-slate-600 mr-5 rounded-full'
+                                                            src={user?.photoURL}
+                                                            alt='profile'
+                                                            onMouseEnter={() => setIsHovering(true)}
+                                                            onMouseLeave={() => setIsHovering(false)}
+                                                      />
+                                                      <h6 style={{ width: '120px', marginLeft: '-30px',  top: '70px', fontWeight: '700' }} className={`hover-display-name py-2 rounded  absolute text-white pl-2 text-sm bg-black ${isHovering ? ' block' : ' hidden'}`}>
+                                                            {user.displayName}
+                                                      </h6>
+                                                </div>
+                                                
+                                          </> : <>
+                                                <li> <Link
+
+                                                      to="/login"
+                                                      className={`${location?.pathname === '/login' ? ' active' : ''} px-3 py-2 rounded-md`}
+                                                >
+                                                      Login
+                                                </Link></li>
+                                          </>
+                                    }
+                              </ul>
                         </div>
                   </div>
             </>

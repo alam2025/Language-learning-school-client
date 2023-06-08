@@ -1,23 +1,23 @@
 [
       {
-            "_id": "1",
+            
             "bannerImg": "/src/assets/banner/bg4.jpg",
             
             "title": "To have another language is to possess a second soul."
       },
       {
-            "_id": "2",
+            
             "bannerImg": "/src/assets/banner/bg2.jpg",
             "title": "Putting Children First.Preparing Children For Success In Life"
       },
       {
-            "_id": "3",
+            
             "bannerImg": "/src/assets/banner/bg3.png",
             "title": " Every student matters, every moment counts."
            
       },
       {
-            "_id": "4",
+            
             "bannerImg": "/src/assets/banner/b5.svg",
             "title": "Teaching Turning Today’s Learners Into Tomorrow’s Leaders"
       }

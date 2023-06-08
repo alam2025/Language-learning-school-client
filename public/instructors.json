@@ -3,8 +3,10 @@
             "_id": "611fbcabed18b645e9e3ac01",
             "name": "Luis Hernandez",
             "email": "luis.hernandez@example.com",
-            "number_of_classes_taken": 5,
-            "classes_taken": [
+            "facebook": "https://www.facebook.com/luis.hernandez",
+            "instagram": "https://www.instagram.com/luis.hernandez",
+            "number_of_courses_taken": 5,
+            "courses_taken": [
                   "Spanish Beginners",
                   "Spanish Intermediate",
                   "Spanish Conversation",
@@ -12,75 +14,131 @@
                   "Spanish Culture"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "Spanish",
-            "short_description": "Experienced Spanish instructor with a passion for teaching and promoting language proficiency."
+            "expertise": [
+                  "Spanish",
+                  "English"
+            ],
+            "brief_info": "Luis Hernandez is an experienced language instructor with expertise in both Spanish and English. He has taken a total of 5 classes, including Spanish Beginners, Spanish Intermediate, Spanish Conversation, Spanish Grammar, and Spanish Culture. With his in-depth knowledge of both languages, Luis is dedicated to helping learners develop their fluency and cultural understanding. He believes that effective communication is key to language mastery and aims to guide his students towards proficiency in Spanish and English. Apart from his teaching commitments, Luis can be contacted via email at luis.hernandez@example.com. You can also connect with him on Facebook at [facebook link] and Instagram at [Instagram link]."
       },
       {
             "_id": "611fbcabed18b645e9e3ac02",
             "name": "Miyuki Yamamoto",
             "email": "miyuki.yamamoto@example.com",
-            "number_of_classes_taken": 4,
-            "classes_taken": [
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 4,
+            "courses_taken": [
                   "Japanese Beginners",
                   "Japanese Intermediate",
                   "Japanese Writing",
                   "Japanese Conversation"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "Japanese",
-            "short_description": "Dedicated Japanese instructor specializing in helping learners develop fluency and cultural understanding."
+            "expertise": [
+                  "Japanese"
+            ],
+            "brief_info": "Miyuki Yamamoto is a dedicated Japanese instructor specializing in helping learners develop fluency and cultural understanding. She has taken a total of 4 classes, including Japanese Beginners, Japanese Intermediate, Japanese Writing, and Japanese Conversation. Miyuki's expertise in the Japanese language allows her to guide students towards language mastery effectively. For any inquiries, you can reach out to Miyuki via email at miyuki.yamamoto@example.com."
       },
       {
             "_id": "611fbcabed18b645e9e3ac03",
             "name": "Sophie Dubois",
             "email": "sophie.dubois@example.com",
-            "number_of_classes_taken": 3,
-            "classes_taken": [
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 3,
+            "courses_taken": [
                   "French Beginners",
                   "French Advanced",
                   "French Pronunciation"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "French",
-            "short_description": "Passionate French instructor experienced in guiding learners towards language mastery and effective communication."
+            "expertise": [
+                  "French"
+            ],
+            "brief_info": "Sophie Dubois is a passionate French instructor experienced in guiding learners towards language mastery and effective communication. She has taken a total of 3 classes, including French Beginners, French Advanced, and French Pronunciation. Sophie's teaching approach focuses on helping students develop their language skills and achieve proficiency. For any inquiries, you can contact Sophie via email at sophie.dubois@example.com."
       },
       {
             "_id": "611fbcabed18b645e9e3ac04",
             "name": "Giuseppe Russo",
             "email": "giuseppe.russo@example.com",
-            "number_of_classes_taken": 2,
-            "classes_taken": [
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 2,
+            "courses_taken": [
                   "Italian Beginners",
                   "Italian Conversation"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "Italian",
-            "short_description": "Dynamic Italian instructor skilled in creating engaging language learning experiences for all levels."
+            "expertise": [
+                  "Italian"
+            ],
+            "brief_info": "Giuseppe Russo is a dynamic Italian instructor skilled in creating engaging language learning experiences for all levels. He has taken a total of 2 classes, including Italian Beginners and Italian Conversation. Giuseppe's expertise in the Italian language enables him to provide effective guidance to learners. For any inquiries, you can reach out to Giuseppe via email at giuseppe.russo@example.com."
       },
       {
             "_id": "611fbcabed18b645e9e3ac05",
             "name": "Dmitry Ivanov",
             "email": "dmitry.ivanov@example.com",
-            "number_of_classes_taken": 3,
-            "classes_taken": [
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 3,
+            "courses_taken": [
                   "Russian Beginners",
                   "Russian Intermediate",
                   "Russian Culture"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "Russian",
-            "short_description": "Experienced Russian instructor dedicated to helping students develop proficiency and cultural awareness."
+            "expertise": [
+                  "Russian",
+                  "English"
+            ],
+            "brief_info": "Dmitry Ivanov is an experienced language instructor with expertise in both Russian and English. He has taken a total of 3 classes, including Russian Beginners, Russian Intermediate, and Russian Culture. Dmitry is dedicated to helping students develop proficiency and cultural awareness in both languages. For any inquiries, you can contact Dmitry via email at dmitry.ivanov@example.com."
       },
       {
             "_id": "611fbcabed18b645e9e3ac06",
             "name": "Li Wei",
             "email": "li.wei@example.com",
-            "number_of_classes_taken": 1,
-            "classes_taken": [
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 1,
+            "courses_taken": [
                   "Mandarin Beginners"
             ],
             "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
-            "specialist_language": "Mandarin",
-            "short_description": "Passionate Mandarin instructor committed to fostering language skills and cross-cultural understanding."
+            "expertise": [
+                  "Mandarin"
+            ],
+            "brief_info": "Li Wei is a passionate Mandarin instructor committed to fostering language skills and cross-cultural understanding. She has taken a total of 1 class, Mandarin Beginners. Li Wei aims to create a learning environment that promotes language proficiency and cultural awareness. For any inquiries, you can reach out to Li Wei via email at li.wei@example.com."
+      },
+      {
+            "_id": "611fbcabed18b645e9e3ac08",
+            "name": "Li Wei",
+            "email": "li.wei@example.com",
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 1,
+            "courses_taken": [
+                  "Mandarin Beginners"
+            ],
+            "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
+            "expertise": [
+                  "Mandarin"
+            ],
+            "brief_info": "Li Wei is a passionate Mandarin instructor committed to fostering language skills and cross-cultural understanding. She has taken a total of 1 class, Mandarin Beginners. Li Wei aims to create a learning environment that promotes language proficiency and cultural awareness. For any inquiries, you can reach out to Li Wei via email at li.wei@example.com."
+      },
+      {
+            "_id": "611fbcabed18b645e9e3ac09",
+            "name": "Li Wei",
+            "email": "li.wei@example.com",
+            "facebook": "",
+            "instagram": "",
+            "number_of_courses_taken": 1,
+            "courses_taken": [
+                  "Mandarin Beginners"
+            ],
+            "image": "https://i.ibb.co/WKrKCLJ/instructor-1.webp",
+            "expertise": [
+                  "Mandarin"
+            ],
+            "brief_info": "Li Wei is a passionate Mandarin instructor committed to fostering language skills and cross-cultural understanding. She has taken a total of 1 class, Mandarin Beginners. Li Wei aims to create a learning environment that promotes language proficiency and cultural awareness. For any inquiries, you can reach out to Li Wei via email at li.wei@example.com."
       }
 ]

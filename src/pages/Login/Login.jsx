@@ -7,6 +7,7 @@ import Lottie from 'react-lottie';
 // import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
+import SocialLogin from './SocialLogin/SocialLogin';
 
 const Login = () => {
       const { logIn } = useContext(AuthContext)
@@ -32,14 +33,14 @@ const Login = () => {
             }
       };
 
-      const handlegooglesignIn = () => { }
+      // 
 
       return (
             <div className=' mb-24'>
                   <SectionBanner title={'Login'} route={'Home | Login'}></SectionBanner>
                   <SectionTitle heading={'Login Form'} subHeading={''}></SectionTitle>
 
-                  <div className="container mx-auto px-4 border shadow-md py-12 px-10 bg-slate-100 ">
+                  <div className="container my-container mx-auto px-4 border shadow-md py-12 px-10 bg-slate-100 ">
                         {/* <h1 className="text-2xl font-bold mb-4">Login</h1> */}
                         <div className=' flex flex-col md:flex-row gap-12 justify-center items-center'>
                               <div className='w-full'>
@@ -86,7 +87,8 @@ const Login = () => {
                                           <Link to='/register' className=' text-orange-700'>New here? Create a New Account.</Link>
                                           <p>Or , Sign in WIth</p>
                                           {/* <SocialSignIn/> */}
-                                          {/* TODO:social login  */}
+                                        
+                                          <SocialLogin/>
                                     </div>
                               </div>
                         </div>

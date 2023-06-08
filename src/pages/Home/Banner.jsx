@@ -1,15 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 const Banner = () => {
-      const [banners, setBanner] = useState([])
+      
 
-      useEffect(() => {
-            fetch('/banner-img.json')
-                  .then(res => res.json()).then(data => setBanner(data))
-      }, [])
+      const {data: banners=[]}=useQuery({
+            queryKey:['banners'],
+            queryFn: async()=>{
+                  const res= await fetch('http://localhost:3000/banners');
+                  return res.json()
+            }
+      })
+
+      console.log(banners);
 
 
       return (

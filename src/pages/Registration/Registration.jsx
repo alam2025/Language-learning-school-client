@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import SocialLogin from '../Login/SocialLogin/SocialLogin';
 
 const Registration = () => {
       const { createUser,
@@ -17,7 +18,7 @@ const Registration = () => {
             handleSubmit,
             formState: { errors } } = useForm();
       const navigate = useNavigate();
-      const [error, setError] = useState();
+      const [error, setError] = useState('');
 
       const onSubmit = (data) => {
             setError('')
@@ -171,17 +172,7 @@ const Registration = () => {
                               <Link to='/Login' className=' text-green-700'>Already Have An Account. Login Here</Link>
                               <p>Or , Sign in WIth</p>
                               {/* <SocialSignIn/> */}
-                              <div className=' flex gap-4'>
-                                    <button className="btn btn-circle btn-outline">
-                                          <FaFacebook size={40} />
-                                    </button>
-                                    <button onClick={handlegooglesignIn} className="btn btn-circle btn-outline">
-                                          <FaGoogle size={40} />
-                                    </button>
-                                    <button className="btn btn-circle btn-outline">
-                                          <FaGithub size={40} />
-                                    </button>
-                              </div>
+                              <SocialLogin></SocialLogin>
                         </div>
                   </div>
 

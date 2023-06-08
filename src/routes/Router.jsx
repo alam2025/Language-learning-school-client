@@ -5,6 +5,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Registration from "../pages/Registration/Registration";
+import Courses from "../pages/Courses/Courses";
 
 const router = createBrowserRouter([
       {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
                   {
                         path:'register',
                         element:<Registration></Registration>
+                  },
+                  {
+                        path:'courses',
+                        element:<Courses></Courses>
                   }
             ]
       }

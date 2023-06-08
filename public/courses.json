@@ -1,0 +1,305 @@
+[
+      {
+        "_id": "611fbcabed18b645e9e3ac01",
+        "image": "https://i.ibb.co/dL4vttS/English-1.jpg",
+        "name": "Course 1",
+        "instructor": "Instructor 1",
+        "category": "English",
+        "price": 49.99,
+        "available_seats": 20,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac02",
+        "image": "https://i.ibb.co/Lrc8qyJ/spanish.jpg",
+        "name": "Course 2",
+        "instructor": "Instructor 2",
+        "category": "Spanish",
+        "price": 59.99,
+        "available_seats": 15,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac03",
+        "image": "https://i.ibb.co/hd2j8yG/Franch.jpg",
+        "name": "Course 3",
+        "instructor": "Instructor 3",
+        "category": "French",
+        "price": 39.99,
+        "available_seats": 10,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac04",
+        "image": "https://i.ibb.co/nMvz7PP/German.jpg",
+        "name": "Course 4",
+        "instructor": "Instructor 4",
+        "category": "German",
+        "price": 69.99,
+        "available_seats": 12,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac05",
+        "image": "https://i.ibb.co/VVkL8N9/japanes.jpg",
+        "name": "Course 5",
+        "instructor": "Instructor 5",
+        "category": "Japanese",
+        "price": 54.99,
+        "available_seats": 18,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac06",
+        "image": "https://i.ibb.co/Wz5fhD3/mandarin.jpg",
+        "name": "Course 6",
+        "instructor": "Instructor 6",
+        "category": "Mandarin",
+        "price": 49.99,
+        "available_seats": 25,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac07",
+        "image": "https://i.ibb.co/pzY9SWF/italian.jpg",
+        "name": "Course 7",
+        "instructor": "Instructor 7",
+        "category": "Italian",
+        "price": 59.99,
+        "available_seats": 14,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac08",
+        "image": "https://i.ibb.co/dL4vttS/English-1.jpg",
+        "name": "Course 8",
+        "instructor": "Instructor 8",
+        "category": "English",
+        "price": 44.99,
+        "available_seats": 16,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac09",
+        "image": "https://i.ibb.co/Lrc8qyJ/spanish.jpg",
+        "name": "Course 9",
+        "instructor": "Instructor 9",
+        "category": "Spanish",
+        "price": 64.99,
+        "available_seats": 9,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac10",
+        "image": "https://i.ibb.co/hd2j8yG/Franch.jpg",
+        "name": "Course 10",
+        "instructor": "Instructor 10",
+        "category": "French",
+        "price": 34.99,
+        "available_seats": 22,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac11",
+        "image": "https://i.ibb.co/nMvz7PP/German.jpg",
+        "name": "Course 11",
+        "instructor": "Instructor 11",
+        "category": "German",
+        "price": 74.99,
+        "available_seats": 8,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac12",
+        "image": "https://i.ibb.co/VVkL8N9/japanes.jpg",
+        "name": "Course 12",
+        "instructor": "Instructor 12",
+        "category": "Japanese",
+        "price": 49.99,
+        "available_seats": 17,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac13",
+        "image": "https://i.ibb.co/Wz5fhD3/mandarin.jpg",
+        "name": "Course 13",
+        "instructor": "Instructor 13",
+        "category": "Mandarin",
+        "price": 59.99,
+        "available_seats": 23,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac14",
+        "image": "https://i.ibb.co/pzY9SWF/italian.jpg",
+        "name": "Course 14",
+        "instructor": "Instructor 14",
+        "category": "Italian",
+        "price": 39.99,
+        "available_seats": 11,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac15",
+        "image": "https://i.ibb.co/dL4vttS/English-1.jpg",
+        "name": "Course 15",
+        "instructor": "Instructor 15",
+        "category": "English",
+        "price": 59.99,
+        "available_seats": 19,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac16",
+        "image": "https://i.ibb.co/Lrc8qyJ/spanish.jpg",
+        "name": "Course 16",
+        "instructor": "Instructor 16",
+        "category": "Spanish",
+        "price": 44.99,
+        "available_seats": 13,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac17",
+        "image": "https://i.ibb.co/hd2j8yG/Franch.jpg",
+        "name": "Course 17",
+        "instructor": "Instructor 17",
+        "category": "French",
+        "price": 69.99,
+        "available_seats": 10,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac18",
+        "image": "https://i.ibb.co/nMvz7PP/German.jpg",
+        "name": "Course 18",
+        "instructor": "Instructor 18",
+        "category": "German",
+        "price": 54.99,
+        "available_seats": 15,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac19",
+        "image": "https://i.ibb.co/VVkL8N9/japanes.jpg",
+        "name": "Course 19",
+        "instructor": "Instructor 19",
+        "category": "Japanese",
+        "price": 49.99,
+        "available_seats": 21,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac20",
+        "image": "https://i.ibb.co/Wz5fhD3/mandarin.jpg",
+        "name": "Course 20",
+        "instructor": "Instructor 20",
+        "category": "Mandarin",
+        "price": 59.99,
+        "available_seats": 14,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac21",
+        "image": "https://i.ibb.co/pzY9SWF/italian.jpg",
+        "name": "Course 21",
+        "instructor": "Instructor 21",
+        "category": "Italian",
+        "price": 39.99,
+        "available_seats": 18,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac22",
+        "image": "https://i.ibb.co/dL4vttS/English-1.jpg",
+        "name": "Course 22",
+        "instructor": "Instructor 22",
+        "category": "English",
+        "price": 49.99,
+        "available_seats": 12,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac23",
+        "image": "https://i.ibb.co/Lrc8qyJ/spanish.jpg",
+        "name": "Course 23",
+        "instructor": "Instructor 23",
+        "category": "Spanish",
+        "price": 64.99,
+        "available_seats": 9,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac24",
+        "image": "https://i.ibb.co/hd2j8yG/Franch.jpg",
+        "name": "Course 24",
+        "instructor": "Instructor 24",
+        "category": "French",
+        "price": 34.99,
+        "available_seats": 22,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac25",
+        "image": "https://i.ibb.co/nMvz7PP/German.jpg",
+        "name": "Course 25",
+        "instructor": "Instructor 25",
+        "category": "German",
+        "price": 74.99,
+        "available_seats": 8,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac26",
+        "image": "https://i.ibb.co/VVkL8N9/japanes.jpg",
+        "name": "Course 26",
+        "instructor": "Instructor 26",
+        "category": "Japanese",
+        "price": 49.99,
+        "available_seats": 17,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac27",
+        "image": "https://i.ibb.co/Wz5fhD3/mandarin.jpg",
+        "name": "Course 27",
+        "instructor": "Instructor 27",
+        "category": "Mandarin",
+        "price": 59.99,
+        "available_seats": 23,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac28",
+        "image": "https://i.ibb.co/pzY9SWF/italian.jpg",
+        "name": "Course 28",
+        "instructor": "Instructor 28",
+        "category": "Italian",
+        "price": 39.99,
+        "available_seats": 11,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac29",
+        "image": "https://i.ibb.co/dL4vttS/English-1.jpg",
+        "name": "Course 29",
+        "instructor": "Instructor 29",
+        "category": "English",
+        "price": 59.99,
+        "available_seats": 19,
+        "status": "Active"
+      },
+      {
+        "_id": "611fbcabed18b645e9e3ac30",
+        "image": "https://i.ibb.co/Lrc8qyJ/spanish.jpg",
+        "name": "Course 30",
+        "instructor": "Instructor 30",
+        "category": "Spanish",
+        "price": 44.99,
+        "available_seats": 13,
+        "status": "Active"
+      }
+    ]
+    
+
+
