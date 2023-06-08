@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import SectionBanner from '../Shared/SectionBanner';
 import SectionTitle from '../Shared/SectionTitle';
 import { useForm } from 'react-hook-form';
 import animationData from '../../../public/signIN.json'
 import Lottie from 'react-lottie';
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
+// import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
+      const { logIn } = useContext(AuthContext)
       const { register,
             handleSubmit,
             formState: { errors } } = useForm();
-
+      const [error, setError] = useState('');
       const onSubmit = (data) => {
-            console.log(data);
+            setError('')
+            // console.log(data);
+            logIn(data.email, data.password)
+                  .then(() => {
+                        alert('Succesfully sign in')
+                  }).catch(error =>setError(error.message))
       };
 
       const defaultOptions = {
@@ -42,6 +49,7 @@ const Login = () => {
                                     />
                               </div>
                               <div className='w-full'>
+                                    {error&&<p className=' text-red-600'>{error}</p>}
                                     <form className=' flex flex-col' onSubmit={handleSubmit(onSubmit)}>
                                           <div className="mb-4">
                                                 <label htmlFor="email" className="block text-gray-700 font-bold mb-1">
@@ -78,17 +86,7 @@ const Login = () => {
                                           <Link to='/register' className=' text-orange-700'>New here? Create a New Account.</Link>
                                           <p>Or , Sign in WIth</p>
                                           {/* <SocialSignIn/> */}
-                                          <div className=' flex gap-4'>
-                                                <button className="btn btn-circle btn-outline">
-                                                      <FaFacebook size={40} />
-                                                </button>
-                                                <button onClick={handlegooglesignIn} className="btn btn-circle btn-outline">
-                                                      <FaGoogle size={40} />
-                                                </button>
-                                                <button className="btn btn-circle btn-outline">
-                                                      <FaGithub size={40} />
-                                                </button>
-                                          </div>
+                                          {/* TODO:social login  */}
                                     </div>
                               </div>
                         </div>

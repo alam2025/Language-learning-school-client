@@ -2,91 +2,125 @@ import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import SectionBanner from '../Shared/SectionBanner';
 import SectionTitle from '../Shared/SectionTitle';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Registration = () => {
-      const { register, handleSubmit } = useForm();
+      const { createUser,
+            setProfile,
+            user,
+            logOut
+      } = useContext(AuthContext)
+      const { register,
+            handleSubmit,
+            formState: { errors } } = useForm();
+      const navigate = useNavigate();
+      const [error, setError] = useState();
 
       const onSubmit = (data) => {
-            console.log(data);
-      };
+            setError('')
+            createUser(data.email, data.password)
+                  .then(result => {
+                        setProfile(data.name, data.photo)
+                              .then(() => {
+                                    alert('User Created. Please Login.')
+                                    logOut()
+                                    navigate('/login')
+                              }).catch((error) => { setError(error.message) })
+                        // console.log(result.user);
+                  }).catch(error => setError(error.message))
 
-      const handlegooglesignIn=()=>{}
+      };
+      // console.log(user);
+      const handlegooglesignIn = () => { }
       return (
             <div >
+                  <Helmet>
+                        <title>Language Learning School | Registration</title>
+                  </Helmet>
                   <SectionBanner title={'Registration'} route={'Home | Registration'}></SectionBanner>
                   <SectionTitle heading={'Application Form'} subHeading={'Become a Member'}></SectionTitle>
 
                   <div className="container mx-auto px-4 my-container bg-slate-100 md:p-20 p-6 rounded-lg mb-20">
+                        {
+                              error && <p className=' text-red-600'>{error}</p>
+                        }
 
                         < form onSubmit={handleSubmit(onSubmit)}>
                               <div className=' grid grid-cols-1 md:grid-cols-2 gap-10'>
                                     <div className="mb-4">
                                           <label htmlFor="name" className="block text-gray-700 font-bold mb-1">
-                                                Name
+                                                Name *
                                           </label>
                                           <input
                                                 type="text"
                                                 id="name"
                                                 name="name"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('name', { required: true })}
+                                                {...register('name', { required: 'Name is Required' })}
                                           />
+                                          {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
                                     </div>
                                     <div className="mb-4">
                                           <label htmlFor="email" className="block text-gray-700 font-bold mb-1">
-                                                Email
+                                                Email*
                                           </label>
                                           <input
                                                 type="email"
                                                 id="email"
                                                 name="email"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('email', { required: true })}
+                                                {...register('email', { required: "Email is Required" })}
                                           />
+                                          {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
                                     </div>
 
                                     <div className="mb-4">
-                                          <label htmlFor="photoUrl" className="block text-gray-700 font-bold mb-1">
-                                                Photo URL
+                                          <label htmlFor="photo" className="block text-gray-700 font-bold mb-1">
+                                                Photo *
                                           </label>
                                           <input
                                                 type="text"
-                                                id="photoUrl"
-                                                name="photoUrl"
+                                                id="photo"
+                                                name="photo"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('photoUrl')}
+                                                {...register('photo', { required: 'Photo is Required' })}
                                           />
+                                          {errors.photo && <span className="text-red-500 text-sm">{errors.photo.message}</span>}
                                     </div>
                                     <div className="mb-4">
-                                          <span className="block text-gray-700 font-bold mb-1">Gender</span>
+                                          <span className="block text-gray-700 font-bold mb-1">Gender*</span>
                                           <div className="flex">
                                                 <label className="mr-4">
-                                                      <input type="radio" name="gender" value="male" {...register('gender')} />
+                                                      <input type="radio" name="gender" value="male" {...register('gender', { required: true })} />
                                                       <span className="ml-1">Male</span>
                                                 </label>
                                                 <label className="mr-4">
-                                                      <input type="radio" name="gender" value="female" {...register('gender')} />
+                                                      <input type="radio" name="gender" value="female" {...register('gender', { required: true })} />
                                                       <span className="ml-1">Female</span>
                                                 </label>
                                                 <label className="mr-4">
-                                                      <input type="radio" name="gender" value="other" {...register('gender')} />
+                                                      <input type="radio" name="gender" value="other" {...register('gender', { required: true })} />
                                                       <span className="ml-1">Other</span>
                                                 </label>
+                                                {errors.gender && <span className="text-red-500 text-sm">{errors.gender.message}</span>}
                                           </div>
                                     </div>
 
                                     <div className="mb-4">
                                           <label htmlFor="phoneNumber" className="block text-gray-700 font-bold mb-1">
-                                                Phone Number
+                                                Phone Number*
                                           </label>
                                           <input
                                                 type="text"
                                                 id="phoneNumber"
                                                 name="phoneNumber"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('phoneNumber')}
+                                                {...register('phoneNumber', { required: 'Phone number is Required' })}
                                           />
+                                          {errors.phoneNumber && <span className="text-red-500 text-sm">{errors.phoneNumber.message}</span>}
                                     </div>
                                     <div className="mb-4">
                                           <label htmlFor="address" className="block text-gray-700 font-bold mb-1">
@@ -101,27 +135,29 @@ const Registration = () => {
                                     </div>
                                     <div className="mb-4">
                                           <label htmlFor="password" className="block text-gray-700 font-bold mb-1">
-                                                Password
+                                                Password*
                                           </label>
                                           <input
                                                 type="password"
                                                 id="password"
                                                 name="password"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('password', { required: true })}
+                                                {...register('password', { required: "Password is Required" })}
                                           />
+                                          {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
                                     </div>
                                     <div className="mb-4">
                                           <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-1">
-                                                Confirm Password
+                                                Confirm Password*
                                           </label>
                                           <input
                                                 type="password"
                                                 id="confirmPassword"
                                                 name="confirmPassword"
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('confirmPassword', { required: true })}
+                                                {...register('confirmPassword', { required: "Confirm Password is Required" })}
                                           />
+                                          {errors.confirmPassword && <span className="text-red-500 text-sm">{errors.confirmPassword.message}</span>}
                                     </div>
 
                               </div>
