@@ -7,7 +7,7 @@
 }
 
 .my-container{
-  @apply md:w-[90%] lg:w-[85%] mx-auto
+  @apply md:w-[90%] lg:w-[85%] w-[95%] mx-auto
 }
 
 .active{

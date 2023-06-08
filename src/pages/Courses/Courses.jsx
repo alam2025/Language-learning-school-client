@@ -35,7 +35,7 @@ const Courses = () => {
 
                   <SectionTitle heading={'choose your course'} subHeading={'Click on the language and select your desert courses'}></SectionTitle>
 
-                  <div className=' my-container'>
+                  <div className=' my-container mb-24'>
                         <Tabs>
                               <div className=' flex justify-center items-center text-xl font-bold'>
                                     <TabList>
@@ -45,7 +45,7 @@ const Courses = () => {
 
                               {categories.map(category => (
                                     <TabPanel key={category.id}>
-                                          <div className='w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'> 
+                                          <div className='w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'> 
                                                 {courses.filter(course => course.category === category.name && course.status==='Active')
                                                       .map(course => <CourseCard key={course._id} course={course}></CourseCard>)}
                                           </div>
