@@ -4,7 +4,7 @@ const useInstructors=()=>{
       const {data: instructors=[], refetch}= useQuery({
             queryKey:['instructors'],
             queryFn:async()=>{
-                  const res= await fetch('/instructors.json');
+                  const res= await fetch('http://localhost:3000/instructors');
                   return res.json()
             }
       })

@@ -1,13 +1,21 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../../assets/black-logo.png'
 import { useContext, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
+
+import useAuth from "../../hooks/useAuth";
+import useEnroll from "../../hooks/useEnroll";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Header = () => {
       const location = useLocation()
-      const { user,logOut } = useContext(AuthContext)
+      const { user, logOut,loading } = useAuth()
       const [isHovering, setIsHovering] = useState(false);
-      const navigate= useNavigate()
+      const navigate = useNavigate();
+      const [enrolls]=useEnroll()
+
+      if(loading){
+            return <LoadingSpinner></LoadingSpinner>
+      }
       const navTabs = (
             <>
                   <li>
@@ -29,12 +37,13 @@ const Header = () => {
                         </Link>
                   </li>
                   <li>
-                        <Link to="/dashboard"
-                              className={`${location?.pathname === '/dashboard' ? 'active' : ""}`}>
-                              Dashboard
-                        </Link>
+                        {user && <Link to="/dashboard"
+                              className={`${location?.pathname === '/dashboard' ? 'active' : ""} relative mr-10`}>
+                              <span>Enrollment</span>
+                              <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{enrolls?.length}</div>
+                        </Link>}
                   </li>
-                  <li>{user && <button onClick={()=>logOut().then(()=>{navigate('/')})} className=" btn btn-outline btn-secondary">Logout</button>}</li>
+                  <li>{user && <button onClick={() => logOut().then(() => { navigate('/') })} className=" ">Logout</button>}</li>
             </>
       );
 
@@ -87,11 +96,11 @@ const Header = () => {
                                                             onMouseEnter={() => setIsHovering(true)}
                                                             onMouseLeave={() => setIsHovering(false)}
                                                       />
-                                                      <h6 style={{ width: '120px', marginLeft: '-30px',  top: '70px', fontWeight: '700' }} className={`hover-display-name py-2 rounded  absolute text-white pl-2 text-sm bg-black ${isHovering ? ' block' : ' hidden'}`}>
+                                                      <h6 style={{ width: '120px', marginLeft: '-30px', top: '70px', fontWeight: '700' }} className={`hover-display-name py-2 rounded  absolute text-white pl-2 text-sm bg-black ${isHovering ? ' block' : ' hidden'}`}>
                                                             {user.displayName}
                                                       </h6>
                                                 </div>
-                                                
+
                                           </> : <>
                                                 <li> <Link
 

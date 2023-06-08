@@ -18,17 +18,12 @@ const Courses = () => {
                   return res.json()
             }
       })
-      // console.log(courses);
+      
 
       const handleTap = (category) => {
-            // const clickItems = courses.filter(c => c.category === category);
-            // console.log(clickItems);
             setSelectedCategory(category)
       }
-      // const handleTabClick = (categoryName) => {
-      //       console.log(categoryName);
-      //       setSelectedCategory(categoryName);
-      //     };
+      
       return (
             <div>
                   <SectionBanner title={'Courses'} route={'Home | Courses'}></SectionBanner>
