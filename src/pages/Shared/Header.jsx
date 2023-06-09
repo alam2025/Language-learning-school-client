@@ -14,10 +14,10 @@ const Header = () => {
       const [isHovering, setIsHovering] = useState(false);
       const navigate = useNavigate();
       const [enrolls]=useEnroll()
-      const [isAdmin]=useAdmin()
+      const [isAdmin,isAdminLoading]=useAdmin()
       console.log(isAdmin);
 
-      if(loading){
+      if(loading ){
             return <LoadingSpinner></LoadingSpinner>
       }
       const navTabs = (
@@ -48,8 +48,11 @@ const Header = () => {
                         </Link>}
                   </li>
                   {
-                        (isAdmin && user) && <li><Link to='/dashboard'>Dashboard</Link></li>
+                        (isAdmin && user) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
                   }
+                  {/* {
+                        (!isAdmin && !user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
+                  } */}
                   <li>{user && <button onClick={() => logOut().then(() => { navigate('/') })} className=" ">Logout</button>}</li>
             </>
       );

@@ -6,7 +6,7 @@ const useEnroll=()=>{
       const token = localStorage.getItem('access_token');
       const {data : enrolls=[],refetch}=useQuery({
             queryKey:['enroll',user?.email],
-            enabled:!loading,
+            enabled:!loading && !!user?.email && !!localStorage.getItem("access_token"),
             queryFn:async()=>{
                   const res= await fetch(`http://localhost:3000/enrollCourse?email=${user?.email}`,{
                         headers:{

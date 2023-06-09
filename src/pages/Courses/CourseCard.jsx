@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import useEnroll from '../../hooks/useEnroll';
 import useAdmin from '../../hooks/useAdmin';
 
+
 const CourseCard = ({ course }) => {
       const navigate = useNavigate()
       const { user } = useAuth()
       const [enrolls,refetch]=useEnroll()
       const [isAdded,setAdded]=useState(false)
       const [isAdmin]=useAdmin()
+   
 
 
       const { name, image, instructor, available_seats, price } = course;
@@ -53,7 +55,7 @@ const CourseCard = ({ course }) => {
                         <p className=' text-xl text-yellow-500'>Price : ${price}</p>
                   </div>
 
-                  <button disabled={isAdmin}  onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
+                  <button disabled={isAdmin ===true}  onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
             </div>
       );
 };

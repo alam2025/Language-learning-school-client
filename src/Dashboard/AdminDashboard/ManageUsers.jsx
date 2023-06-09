@@ -39,6 +39,22 @@ const ManageUsers = () => {
                         }
                   })
       }
+
+      // delete user 
+      const handleDelete=user=>{
+            axiosSecure.delete(`/users/${user._id}`)
+            .then(res=>{
+                  if(res.data.deletedCount>0){
+                        refetch()
+                        alert('Deleted')
+                  }
+                 
+                 
+                  
+            })
+      }
+
+
       return (
             <div>
                   <SectionTitle heading={'Manage Users'} subHeading={'What to do'}></SectionTitle>
@@ -55,6 +71,7 @@ const ManageUsers = () => {
                                           </th>
                                           <th>Image</th>
                                           <th>Name</th>
+                                          <th>Email</th>
                                           <th>Make Instructor</th>
                                           <th>Make Admin</th>
                                           <th>Delete</th>
@@ -83,6 +100,9 @@ const ManageUsers = () => {
 
                                                       <td>
                                                             <h1 className=' font-bold'>{user.name}</h1>
+                                                      </td>
+                                                      <td>
+                                                            <h1 className=' font-bold'>{user.email}</h1>
                                                       </td>
 
                                                       <td >
@@ -115,7 +135,7 @@ const ManageUsers = () => {
 
                                                       <th>
                                                             <div >
-                                                                  <button className=' bg-red-200 p-2 rounded-md hover:bg-red-400' ><GrTrash size={30}></GrTrash></button>
+                                                                  <button onClick={()=>handleDelete(user)} className=' bg-red-200 p-2 rounded-md hover:bg-red-400' ><GrTrash size={30}></GrTrash></button>
                                                             </div>
                                                       </th>
                                                 </tr>

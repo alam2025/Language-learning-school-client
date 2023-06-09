@@ -11,6 +11,7 @@ import AdminHome from "../Dashboard/AdminDashboard/AdminHome";
 import ManageCourse from "../Dashboard/AdminDashboard/ManageCourse";
 import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
 import EnrollCourse from "../Dashboard/UserDashboard/EnrollCourse";
+import InstructorHome from "../Dashboard/InstructorDashboard/InstructorHome";
 
 const router = createBrowserRouter([
       {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
                   {
                         path:'enrollCourse',
                         element:<EnrollCourse></EnrollCourse>
+                  },
+                  {
+                        path:'instructorhome',
+                        element:<InstructorHome></InstructorHome>
                   }
             ]
       }
