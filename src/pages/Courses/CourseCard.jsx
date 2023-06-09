@@ -22,7 +22,7 @@ const CourseCard = ({ course }) => {
       const handleAddCart = course => {
             const { _id, name, image, instructor, available_seats, price } = course;
             if (user && user?.email) {
-                  const selectedCourse = { courseId: _id,date:new Date(), name, image, instructor, price, email: user?.email };
+                  const selectedCourse = { courseId: _id,date:new Date(), name, image, instructor, price, email: user?.email, available_seats };
                   axiosSecure.post('/selectCourse',selectedCourse)
                   .then(res=>{
                         if(res.data.insertedId){
