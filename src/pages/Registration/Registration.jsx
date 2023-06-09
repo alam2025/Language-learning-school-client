@@ -46,8 +46,7 @@ const Registration = () => {
                               .then(result => {
                                     axios.post('http://localhost:3000/users', newUser)
                                           .then(res => {
-                                                console.log(response.data.data.display_url);
-                                                console.log(name);
+                                               
                                                 setProfile(data.name, response.data.data.display_url)
                                                       .then(() => {
                                                             alert('User Created. Please Login.')

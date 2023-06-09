@@ -7,7 +7,7 @@ const useCourses=()=>{
       const [axiosSecure]=useAxiosSecure()
       const {data: courses=[],refetch}=useQuery({
             queryKey:['course'],
-            enabled:!loading && !!user?.email && !!localStorage.getItem("access_token"),
+            enabled:!loading ,
             queryFn:async()=>{
                   const res= await axiosSecure.get('/classes');
                   return res.data;

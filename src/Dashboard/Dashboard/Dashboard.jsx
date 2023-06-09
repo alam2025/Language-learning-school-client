@@ -6,11 +6,16 @@ import logo from '../../assets/black-logo.png'
 import { FaBookOpen, FaHome, FaUserShield, FaUsers } from "react-icons/fa";
 import useAuth from '../../hooks/useAuth';
 import useAdmin from '../../hooks/useAdmin';
+import LoadingSpinner from '../../pages/Shared/LoadingSpinner';
 
 const Dashboard = () => {
-      const { logOut } = useAuth()
+      const { logOut,user } = useAuth()
       const navigate = useNavigate()
-      const [isAdmin] = useAdmin()
+      const [isAdmin,isAdminLoading] = useAdmin()
+
+      if(isAdminLoading){
+            return <LoadingSpinner></LoadingSpinner>
+      }
 
 
 
@@ -30,7 +35,7 @@ const Dashboard = () => {
                               <div>
                                     <img src={logo} alt="" className=' mb-10' />
                               </div>
-                              <div className="divider"></div>
+                             
                               {/* Sidebar content here */}
 
                               <div className="divider"></div>
@@ -39,6 +44,13 @@ const Dashboard = () => {
                                           <li><NavLink to='/dashboard/adminhome'><FaHome />ADMIN HOME</NavLink></li>
                                           <li><NavLink to='/dashboard/courses'><FaBookOpen />Manage Courses</NavLink></li>
                                           <li><NavLink to='/dashboard/users'><FaUsers />Manage Users</NavLink></li>
+                                    </>
+                              }
+                              {
+                                    (user && !isAdmin)&&<>
+                                    <li><NavLink to='/dashboard/userhome'>USER HOME</NavLink></li>
+                                    <li><NavLink to='/dashboard/selected-courses'>SELECTED COURSES</NavLink></li>
+                                    <li><NavLink to='/dashboard/enrolCoourses'>Enroll COURSES</NavLink></li>
                                     </>
                               }
 

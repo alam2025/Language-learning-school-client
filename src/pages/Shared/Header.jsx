@@ -6,6 +6,8 @@ import useAuth from "../../hooks/useAuth";
 import useEnroll from "../../hooks/useEnroll";
 import LoadingSpinner from "./LoadingSpinner";
 import useAdmin from "../../hooks/useAdmin";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import useCart from "../../hooks/useCart";
 
 
 const Header = () => {
@@ -13,13 +15,14 @@ const Header = () => {
       const { user, logOut,loading } = useAuth()
       const [isHovering, setIsHovering] = useState(false);
       const navigate = useNavigate();
-      const [enrolls]=useEnroll()
+      const [selectedCourse]=useCart()
       const [isAdmin,isAdminLoading]=useAdmin()
-      console.log(isAdmin);
+      // console.log(isAdmin);
 
       if(loading ){
             return <LoadingSpinner></LoadingSpinner>
       }
+      console.log(selectedCourse);
       const navTabs = (
             <>
                   <li>
@@ -41,10 +44,10 @@ const Header = () => {
                         </Link>
                   </li>
                   <li>
-                        {(user && !isAdmin) && <Link to="/dashboard/enrollCourse"
+                        {(user && !isAdmin) && <Link to="/dashboard/selected-courses"
                               className={`${location?.pathname === '/dashboard/enrollCourse' ? 'active' : ""} relative mr-10`}>
-                              <span>Enrollment</span>
-                              <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{enrolls?.length}</div>
+                              <span><AiOutlineShoppingCart/></span>
+                              <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{selectedCourse?.length}</div>
                         </Link>}
                   </li>
                   {

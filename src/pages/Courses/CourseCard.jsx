@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import useEnroll from '../../hooks/useEnroll';
 import useAdmin from '../../hooks/useAdmin';
+import useAxiosSecure from '../../hooks/useAxioseSequre';
 
 
 const CourseCard = ({ course }) => {
@@ -11,6 +12,7 @@ const CourseCard = ({ course }) => {
       const [enrolls,refetch]=useEnroll()
       const [isAdded,setAdded]=useState(false)
       const [isAdmin]=useAdmin()
+      const [axiosSecure]=useAxiosSecure()
    
 
 
@@ -20,25 +22,32 @@ const CourseCard = ({ course }) => {
       const handleAddCart = course => {
             const { _id, name, image, instructor, available_seats, price } = course;
             if (user && user?.email) {
-                  const enrollCourse = { courseId: _id,date:new Date(), name, image, instructor, price, email: user?.email };
-
-                  fetch(`http://localhost:3000/enrollCourse`, {
-                        method: 'POST',
-                        headers: {
-                              'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(enrollCourse)
-                  })
-                        .then(res => res.json())
-                        .then(data => {
+                  const selectedCourse = { courseId: _id,date:new Date(), name, image, instructor, price, email: user?.email };
+                  axiosSecure.post('/selectCourse',selectedCourse)
+                  .then(res=>{
+                        if(res.data.insertedId){
                               refetch()
-                              // console.log(data);
-                              if(data.insertedId)
-                              {
-                                    alert('Successfully added')
-                              }
+                              alert('Successfully added')
+                        }
+                  })
+
+                  // fetch(`http://localhost:3000/selectCourse`, {
+                  //       method: 'POST',
+                  //       headers: {
+                  //             'content-type': 'application/json'
+                  //       },
+                  //       body: JSON.stringify(enrollCourse)
+                  // })
+                  //       .then(res => res.json())
+                  //       .then(data => {
+                            
+                  //             // console.log(data);
+                  //             if(data.insertedId)
+                  //             {
+                                   
+                  //             }
                               
-                        })
+                  //       })
             }
             else {
                   alert('PLease Login to enroll this course.');

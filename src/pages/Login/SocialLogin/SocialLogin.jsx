@@ -19,13 +19,14 @@ const SocialLogin = () => {
                   }
                   // console.log(result.user);
                   LoadData(createUser);
-                  navigate('/')
+                 
             }).catch(error=>console.log(error.message))
        }
        const LoadData=(user)=>{
             axios.post('http://localhost:3000/users',user)
             .then(res=>{
-                  console.log(res);
+                  // console.log(res);
+                  navigate('/')
             })
        }
       return (
