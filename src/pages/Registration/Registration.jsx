@@ -7,35 +7,80 @@ import { Helmet } from 'react-helmet';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import SocialLogin from '../Login/SocialLogin/SocialLogin';
+import axios from 'axios';
 
 const Registration = () => {
       const { createUser,
             setProfile,
             user,
             logOut
-      } = useContext(AuthContext)
+      } = useContext(AuthContext);
+
       const { register,
             handleSubmit,
             formState: { errors } } = useForm();
       const navigate = useNavigate();
+
       const [error, setError] = useState('');
 
-      const onSubmit = (data) => {
+      const image_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBGG_KEY}`
+
+      const onSubmit = async (data) => {
             setError('')
-            createUser(data.email, data.password)
-                  .then(result => {
-                        setProfile(data.name, data.photo)
-                              .then(() => {
-                                    alert('User Created. Please Login.')
-                                    logOut()
-                                    navigate('/login')
-                              }).catch((error) => { setError(error.message) })
-                        // console.log(result.user);
-                  }).catch(error => setError(error.message))
+            const formData = new FormData();
+            formData.append('image', data.photo[0]);
+
+            const response = await axios.post(`${image_url}`, formData);
+            // const user = {
+            //       name: data.name,
+            //       photo: data.photo,
+            //       email: data.email,
+
+            // }
+            if (response.data && response.data.data && response.data.data.url) {
+                  if (response.data.success) {
+                        const imgUrl = response.data.data.display_url;
+                        const { name, email } = data;
+                        const newUser = { name, email, photo: imgUrl }
+                        createUser(data.email, data.password)
+                              .then(result => {
+                                    axios.post('http://localhost:3000/users', newUser)
+                                          .then(res => {
+                                                console.log(response.data.data.display_url);
+                                                console.log(name);
+                                                setProfile(data.name, response.data.data.display_url)
+                                                      .then(() => {
+                                                            alert('User Created. Please Login.')
+                                                            logOut()
+                                                            navigate('/login')
+                                                      }).catch((error) => { setError(error.message) })
+                                          })
+
+
+                                    // console.log(result.user);
+                              }).catch(error => setError(error.message))
+
+                  }
+            }
+            // console.log(data);
+            // createUser(data.email, data.password)
+            //       .then(result => {
+            //             axios.post('http://localhost:3000/users', user)
+            //                   .then(res => {
+            //                         console.log(res);
+            //                   })
+
+            //             setProfile(data.name, data.photo)
+            //                   .then(() => {
+            //                         alert('User Created. Please Login.')
+            //                         logOut()
+            //                         navigate('/login')
+            //                   }).catch((error) => { setError(error.message) })
+            //             // console.log(result.user);
+            //       }).catch(error => setError(error.message))
 
       };
-      // console.log(user);
-      const handlegooglesignIn = () => { }
+
       return (
             <div >
                   <Helmet>
@@ -79,15 +124,15 @@ const Registration = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                          <label htmlFor="photo" className="block text-gray-700 font-bold mb-1">
-                                                Photo *
+                                          <label htmlFor="photo" className="block text-gray-700 font-bold mb-2">
+                                                Choose a File
                                           </label>
                                           <input
-                                                type="text"
+                                                type="file"
                                                 id="photo"
-                                                name="photo"
-                                                className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('photo', { required: 'Photo is Required' })}
+                                                {...register('photo', { required: 'photo is required' })}
+                                                className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.photo ? 'border-red-500' : ''}`}
+                                                placeholder="Select File"
                                           />
                                           {errors.photo && <span className="text-red-500 text-sm">{errors.photo.message}</span>}
                                     </div>

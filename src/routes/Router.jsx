@@ -6,6 +6,11 @@ import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Registration from "../pages/Registration/Registration";
 import Courses from "../pages/Courses/Courses";
+import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import AdminHome from "../Dashboard/AdminDashboard/AdminHome";
+import ManageCourse from "../Dashboard/AdminDashboard/ManageCourse";
+import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers";
+import EnrollCourse from "../Dashboard/UserDashboard/EnrollCourse";
 
 const router = createBrowserRouter([
       {
@@ -32,6 +37,28 @@ const router = createBrowserRouter([
                   {
                         path:'courses',
                         element:<Courses></Courses>
+                  }
+            ]
+      },
+      {
+            path:'dashboard',
+            element:<Dashboard></Dashboard>,
+            children:[
+                  {
+                        path:'adminhome',
+                        element:<AdminHome></AdminHome>
+                  },
+                  {
+                        path:'courses',
+                        element:<ManageCourse></ManageCourse>
+                  },
+                  {
+                        path:'users',
+                        element:<ManageUsers></ManageUsers>
+                  },
+                  {
+                        path:'enrollCourse',
+                        element:<EnrollCourse></EnrollCourse>
                   }
             ]
       }

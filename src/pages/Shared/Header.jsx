@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useEnroll from "../../hooks/useEnroll";
 import LoadingSpinner from "./LoadingSpinner";
+import useAdmin from "../../hooks/useAdmin";
+
 
 const Header = () => {
       const location = useLocation()
@@ -12,6 +14,8 @@ const Header = () => {
       const [isHovering, setIsHovering] = useState(false);
       const navigate = useNavigate();
       const [enrolls]=useEnroll()
+      const [isAdmin]=useAdmin()
+      console.log(isAdmin);
 
       if(loading){
             return <LoadingSpinner></LoadingSpinner>
@@ -37,12 +41,15 @@ const Header = () => {
                         </Link>
                   </li>
                   <li>
-                        {user && <Link to="/dashboard"
-                              className={`${location?.pathname === '/dashboard' ? 'active' : ""} relative mr-10`}>
+                        {(user && !isAdmin) && <Link to="/dashboard/enrollCourse"
+                              className={`${location?.pathname === '/dashboard/enrollCourse' ? 'active' : ""} relative mr-10`}>
                               <span>Enrollment</span>
                               <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{enrolls?.length}</div>
                         </Link>}
                   </li>
+                  {
+                        (isAdmin && user) && <li><Link to='/dashboard'>Dashboard</Link></li>
+                  }
                   <li>{user && <button onClick={() => logOut().then(() => { navigate('/') })} className=" ">Logout</button>}</li>
             </>
       );

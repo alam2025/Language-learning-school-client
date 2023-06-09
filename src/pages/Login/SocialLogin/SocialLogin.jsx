@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const SocialLogin = () => {
       const { googleSignIn } = useContext(AuthContext);
       const navigate= useNavigate()
@@ -10,9 +11,22 @@ const SocialLogin = () => {
       const handlegooglesignIn = () => {
             googleSignIn()
             .then(result=>{
-                  console.log(result.user);
+                  const user = result.user;
+                  const createUser={
+                        name:user.displayName,
+                        photo:user.photoURL,
+                        email:user.email
+                  }
+                  // console.log(result.user);
+                  LoadData(createUser);
                   navigate('/')
             }).catch(error=>console.log(error.message))
+       }
+       const LoadData=(user)=>{
+            axios.post('http://localhost:3000/users',user)
+            .then(res=>{
+                  console.log(res);
+            })
        }
       return (
             <div className=' flex gap-4'>

@@ -1,16 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import SectionBanner from '../Shared/SectionBanner';
 import SectionTitle from '../Shared/SectionTitle';
 import { useForm } from 'react-hook-form';
 import animationData from '../../../public/signIN.json'
 import Lottie from 'react-lottie';
 // import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import SocialLogin from './SocialLogin/SocialLogin';
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
-      const { logIn } = useContext(AuthContext)
+      const [disabled, setDisabled] = useState(true)
+      const captchaRef = useRef(null)
+      const { logIn } = useContext(AuthContext);
+      const navigate = useNavigate()
       const { register,
             handleSubmit,
             formState: { errors } } = useForm();
@@ -21,7 +25,8 @@ const Login = () => {
             logIn(data.email, data.password)
                   .then(() => {
                         alert('Succesfully sign in')
-                  }).catch(error =>setError(error.message))
+                        navigate('/')
+                  }).catch(error => setError(error.message))
       };
 
       const defaultOptions = {
@@ -34,6 +39,19 @@ const Login = () => {
       };
 
       // 
+      const handleValidateCaptcha = (e) => {
+            e.preventDefault()
+            const user_captcha_value = captchaRef.current.value;
+            if (validateCaptcha(user_captcha_value)) {
+                  setDisabled(false)
+            } else {
+                  setDisabled(true)
+            }
+      }
+
+      useEffect(() => {
+            loadCaptchaEnginge(6);
+      }, [])
 
       return (
             <div className=' mb-24'>
@@ -50,7 +68,7 @@ const Login = () => {
                                     />
                               </div>
                               <div className='w-full'>
-                                    {error&&<p className=' text-red-600'>{error}</p>}
+                                    {error && <p className=' text-red-600'>{error}</p>}
                                     <form className=' flex flex-col' onSubmit={handleSubmit(onSubmit)}>
                                           <div className="mb-4">
                                                 <label htmlFor="email" className="block text-gray-700 font-bold mb-1">
@@ -78,7 +96,17 @@ const Login = () => {
                                                 />
                                                 {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
                                           </div>
-                                          <input type="submit" value="Login" className="bg-blue-500 text-white px-4 py-2 rounded-md" />
+                                          <div className="form-control">
+                                                <label className="label">
+                                                      <LoadCanvasTemplate />
+                                                </label>
+
+                                                <input ref={captchaRef} type="text" name='captcha' placeholder="Type captcha..." className="input input-bordered" />
+
+                                          </div>
+                                          <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs">Validate</button>
+                                       
+                                          <input disabled={disabled} type="submit" value="Login" className="bg-blue-500 text-white px-4 py-2 rounded-md" />
                                           {/* <button type="submit" >
                                           Login
                                     </button> */}
@@ -87,8 +115,8 @@ const Login = () => {
                                           <Link to='/register' className=' text-orange-700'>New here? Create a New Account.</Link>
                                           <p>Or , Sign in WIth</p>
                                           {/* <SocialSignIn/> */}
-                                        
-                                          <SocialLogin/>
+
+                                          <SocialLogin />
                                     </div>
                               </div>
                         </div>
