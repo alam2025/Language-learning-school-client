@@ -4,6 +4,7 @@ import useCart from '../../hooks/useCart';
 import { GrTrash} from "react-icons/gr";
 import useAxiosSecure from '../../hooks/useAxioseSequre';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SelectedCourses = () => {
       const [selectCourse,refetch] = useCart()
@@ -16,7 +17,14 @@ const SelectedCourses = () => {
             .then(res=>{
                   if(res.data.deletedCount > 0){
                         refetch();
-                        alert('Deleted Success')
+                        Swal.fire({
+                                    
+                              position: 'top-end',
+                              icon: 'success',
+                              title: 'Your work has been saved',
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
                   }
             })
 

@@ -29,7 +29,8 @@
     "react-router-dom": "^6.12.0",
     "react-simple-captcha": "^9.0.2",
     "react-tabs": "^6.0.1",
-    "sort-by": "^0.0.2"
+    "sort-by": "^0.0.2",
+    "sweetalert2": "^11.4.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

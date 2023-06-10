@@ -11,7 +11,7 @@ const Courses = () => {
       const [selectedCategory, setSelectedCategory] = useState([]);
 
       const [courses] = useCourses()
-      const { data: categories = [] } = useQuery({
+      const { data: categories = [] ,refetch} = useQuery({
             queryKey: ['category'],
             queryFn: async () => {
                   const res = await fetch('/category.json');
@@ -42,7 +42,7 @@ const Courses = () => {
                                     <TabPanel key={category.id}>
                                           <div className='w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'> 
                                                 {courses.filter(course => course.category === category.name && course.status==='Active')
-                                                      .map(course => <CourseCard key={course._id} course={course}></CourseCard>)}
+                                                      .map(course => <CourseCard key={course._id} course={course} refetch={refetch()}></CourseCard>)}
                                           </div>
                                     </TabPanel>
                               ))}
