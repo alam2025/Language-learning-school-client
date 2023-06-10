@@ -10,7 +10,7 @@ const useEnroll=()=>{
             queryKey:['enroll',user?.email],
             enabled:!loading && !!user?.email && !!localStorage.getItem("access_token"),
             queryFn:async()=>{
-                  const res= await axiosSecure.get(`/enrollCourses?email=${user?.email}`)
+                  const res= await axiosSecure.get(`/enrolls?email=${user?.email}`)
                   return res.data
             }
       })

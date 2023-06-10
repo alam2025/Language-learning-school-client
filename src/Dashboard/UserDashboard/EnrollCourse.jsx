@@ -1,13 +1,42 @@
 import React from 'react';
 import SectionTitle from '../../pages/Shared/SectionTitle';
 import useEnroll from '../../hooks/useEnroll';
-import { GrTrash} from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
+import useAxiosSecure from '../../hooks/useAxioseSequre';
+import Swal from 'sweetalert2';
 
 const EnrollCourse = () => {
-      const [enrolls] = useEnroll()
-      
-      const handleDelete=enroll=>{
-            console.log(enroll._id);
+      const [enrolls, refetch] = useEnroll()
+      const [axiosSecure] = useAxiosSecure();
+
+      const handleDelete = enroll => {
+            console.log(enroll);
+            Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        axiosSecure.delete(`/enrollCourses/${enroll._id}`)
+                              .then(res => {
+                                    console.log(res.data);
+                                    refetch()
+                                    if (res.data.deletedCount > 0) {
+                                            Swal.fire(
+                                              'Deleted!',
+                                              'Your file has been deleted.',
+                                              'success'
+                                            )
+                                    }
+                              })
+
+                  }
+            })
+
       }
       return (
             <div>
@@ -34,7 +63,7 @@ const EnrollCourse = () => {
                                     <tbody>
                                           {/* row 1 */}
                                           {
-                                                enrolls?.map((enroll, index) => 
+                                                enrolls?.map((enroll, index) =>
                                                       <tr key={index}>
                                                             <th>
                                                                   <label>
@@ -50,18 +79,18 @@ const EnrollCourse = () => {
                                                                         </div>
                                                                         <div>
                                                                               <div className="font-bold">{enroll.name}</div>
-                                                                              
+
                                                                         </div>
                                                                   </div>
                                                             </td>
                                                             <td>
-                                                                 {enroll.instructor}
+                                                                  {enroll.instructor}
                                                             </td>
                                                             <td>${enroll.price}</td>
                                                             <th>
-                                                            <div >
-                                                                  <button onClick={()=>handleDelete(enroll)} className=' bg-red-200 p-2 rounded-md hover:bg-red-400' ><GrTrash size={30}></GrTrash></button>
-                                                            </div>
+                                                                  <div >
+                                                                        <button onClick={() => handleDelete(enroll)} className=' bg-red-200 p-2 rounded-md hover:bg-red-400' ><GrTrash size={30}></GrTrash></button>
+                                                                  </div>
                                                             </th>
                                                       </tr>
                                                 )
