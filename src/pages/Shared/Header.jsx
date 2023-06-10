@@ -18,12 +18,13 @@ const Header = () => {
       const navigate = useNavigate();
       const [selectedCourse]=useCart()
       const [isAdmin,isAdminLoading]=useAdmin();
-      const [itInstructor]=isInstructor();
+      const [itInstructor,itInstructorLoading]=isInstructor();
       
 
       if(loading ){
             return <LoadingSpinner></LoadingSpinner>
       }
+      
       // console.log(selectedCourse);
       const navTabs = (
             <>
@@ -53,10 +54,10 @@ const Header = () => {
                         </Link>}
                   </li>
                   {
-                        (isAdmin && user) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
+                        (isAdmin && user &&!itInstructor) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
                   }
                   {
-                        (itInstructor && user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
+                        (itInstructor && user && !isAdmin) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
                   }
                   {/* {
                         (!isAdmin && !user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>

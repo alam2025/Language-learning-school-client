@@ -31,12 +31,7 @@ const Registration = () => {
             formData.append('image', data.photo[0]);
 
             const response = await axios.post(`${image_url}`, formData);
-            // const user = {
-            //       name: data.name,
-            //       photo: data.photo,
-            //       email: data.email,
-
-            // }
+            
             if (response.data && response.data.data && response.data.data.url) {
                   if (response.data.success) {
                         const imgUrl = response.data.data.display_url;
@@ -61,23 +56,7 @@ const Registration = () => {
 
                   }
             }
-            // console.log(data);
-            // createUser(data.email, data.password)
-            //       .then(result => {
-            //             axios.post('https://language-learning-school-server.vercel.app/users', user)
-            //                   .then(res => {
-            //                         console.log(res);
-            //                   })
-
-            //             setProfile(data.name, data.photo)
-            //                   .then(() => {
-            //                         alert('User Created. Please Login.')
-            //                         logOut()
-            //                         navigate('/login')
-            //                   }).catch((error) => { setError(error.message) })
-            //             // console.log(result.user);
-            //       }).catch(error => setError(error.message))
-
+            
       };
 
       return (

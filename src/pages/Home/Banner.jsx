@@ -15,7 +15,7 @@ const Banner = () => {
             }
       })
 
-      console.log(banners);
+      // console.log(banners);
 
 
       return (
