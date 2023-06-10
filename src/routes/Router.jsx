@@ -14,6 +14,10 @@ import EnrollCourse from "../Dashboard/UserDashboard/EnrollCourse";
 import InstructorHome from "../Dashboard/InstructorDashboard/InstructorHome";
 import SelectedCourses from "../Dashboard/InstructorDashboard/SelectedCourses";
 import Payment from "../Dashboard/UserDashboard/Payment/Payment";
+import PaymentHistory from "../Dashboard/UserDashboard/Payment/PaymentHistory";
+import AddClass from "../Dashboard/InstructorDashboard/AddClass/AddClass";
+import MyClasses from "../Dashboard/InstructorDashboard/MyClasses/MyClasses";
+// import Enrolled from "../Dashboard/InstructorDashboard/Enrolled/Enrolled";
 
 const router = createBrowserRouter([
       {
@@ -64,8 +68,9 @@ const router = createBrowserRouter([
                         element:<EnrollCourse></EnrollCourse>
                   },
                   {
-                        path:'instructorhome',
-                        element:<InstructorHome></InstructorHome>
+                        path:'paymentHistory',
+                        element:<PaymentHistory></PaymentHistory>
+
                   },
                   {
                         path:'selected-courses',
@@ -74,7 +79,20 @@ const router = createBrowserRouter([
                   {
                         path:'payment',
                         element:<Payment></Payment>
-                  }
+                  },
+                  {
+                        path:'instructorhome',
+                        element:<InstructorHome></InstructorHome>
+                  },
+                  {
+                        path:'addRoom',
+                        element:<AddClass></AddClass>
+                  },
+                  {
+                        path:'myClasses',
+                        element:<MyClasses></MyClasses>
+                  },
+                 
             ]
       }
 ])

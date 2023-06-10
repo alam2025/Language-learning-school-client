@@ -6,16 +6,19 @@ import useAdmin from '../../hooks/useAdmin';
 import useAxiosSecure from '../../hooks/useAxioseSequre';
 import Swal from 'sweetalert2';
 import useCart from '../../hooks/useCart';
+import isInstructor from '../../hooks/isInstructor';
 
 
 const CourseCard = ({ course }) => {
+      const [itInstructor]=isInstructor()
       const navigate = useNavigate()
       const { user } = useAuth()
       const [enrolls] = useEnroll()
       const [isAdded, setAdded] = useState(false)
       const [isAdmin] = useAdmin()
       const [axiosSecure] = useAxiosSecure()
-      const [,refetch]=useCart()
+      const [,refetch]=useCart();
+      
 
 
 
@@ -61,7 +64,7 @@ const CourseCard = ({ course }) => {
                         <p className=' text-xl text-yellow-500'>Price : ${price}</p>
                   </div>
 
-                  <button disabled={isAdmin === true} onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
+                  <button disabled={isAdmin === true || itInstructor===true} onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
             </div>
       );
 };

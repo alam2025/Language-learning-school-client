@@ -8,6 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import useAdmin from "../../hooks/useAdmin";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import useCart from "../../hooks/useCart";
+import isInstructor from "../../hooks/isInstructor";
 
 
 const Header = () => {
@@ -16,13 +17,14 @@ const Header = () => {
       const [isHovering, setIsHovering] = useState(false);
       const navigate = useNavigate();
       const [selectedCourse]=useCart()
-      const [isAdmin,isAdminLoading]=useAdmin()
-      // console.log(isAdmin);
+      const [isAdmin,isAdminLoading]=useAdmin();
+      const [itInstructor]=isInstructor();
+      
 
       if(loading ){
             return <LoadingSpinner></LoadingSpinner>
       }
-      console.log(selectedCourse);
+      // console.log(selectedCourse);
       const navTabs = (
             <>
                   <li>
@@ -44,7 +46,7 @@ const Header = () => {
                         </Link>
                   </li>
                   <li>
-                        {(user && !isAdmin) && <Link to="/dashboard/selected-courses"
+                        {(user && !isAdmin && !itInstructor) && <Link to="/dashboard/selected-courses"
                               className={`${location?.pathname === '/dashboard/enrollCourse' ? 'active' : ""} relative mr-10`}>
                               <span><AiOutlineShoppingCart/></span>
                               <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{selectedCourse?.length}</div>
@@ -52,6 +54,9 @@ const Header = () => {
                   </li>
                   {
                         (isAdmin && user) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
+                  }
+                  {
+                        (itInstructor && user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
                   }
                   {/* {
                         (!isAdmin && !user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>

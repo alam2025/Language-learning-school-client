@@ -6,11 +6,7 @@ import CourseCard from '../../Courses/CourseCard';
 
 const PopularClasses = () => {
       const [courses]= useCourses()
-      // const [classes,setClasses]=useState([])
-      // useEffect(()=>{
-      //       fetch('./classes.json').then(res=>res.json()).then(data=>setClasses(data.slice(0,6)))
-      // },[])
-      // console.log(classes);
+     
       const popular= courses.slice(0,6)
 
       return (

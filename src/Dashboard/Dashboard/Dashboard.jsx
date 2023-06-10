@@ -7,13 +7,15 @@ import { FaBookOpen, FaHome, FaUserShield, FaUsers } from "react-icons/fa";
 import useAuth from '../../hooks/useAuth';
 import useAdmin from '../../hooks/useAdmin';
 import LoadingSpinner from '../../pages/Shared/LoadingSpinner';
+import isInstructor from '../../hooks/isInstructor';
 
 const Dashboard = () => {
-      const { logOut,user } = useAuth()
+      const { logOut, user } = useAuth()
       const navigate = useNavigate()
-      const [isAdmin,isAdminLoading] = useAdmin()
+      const [isAdmin, isAdminLoading] = useAdmin();
+      const [itInstructor] = isInstructor();
 
-      if(isAdminLoading){
+      if (isAdminLoading) {
             return <LoadingSpinner></LoadingSpinner>
       }
 
@@ -35,26 +37,42 @@ const Dashboard = () => {
                               <div>
                                     <img src={logo} alt="" className=' mb-10' />
                               </div>
-                             
+
                               {/* Sidebar content here */}
 
                               <div className="divider"></div>
+                              {/*-------- admin navbar ----------- */}
                               {
-                                    isAdmin && <>
+                                    (isAdmin && !itInstructor) && <>
                                           <li><NavLink to='/dashboard/adminhome'><FaHome />ADMIN HOME</NavLink></li>
                                           <li><NavLink to='/dashboard/courses'><FaBookOpen />Manage Courses</NavLink></li>
                                           <li><NavLink to='/dashboard/users'><FaUsers />Manage Users</NavLink></li>
                                     </>
                               }
                               {
-                                    (user && !isAdmin)&&<>
-                                    <li><NavLink to='/dashboard/userhome'>USER HOME</NavLink></li>
-                                    <li><NavLink to='/dashboard/selected-courses'>SELECTED COURSES</NavLink></li>
-                                    <li><NavLink to='/dashboard/enrolCoourses'>Enroll COURSES</NavLink></li>
+                                    //-------- user navbar --------------
+                                    (user&& !itInstructor && !isAdmin) && <>
+                                          <li><NavLink to='/dashboard/userhome'>USER HOME</NavLink></li>
+                                          <li><NavLink to='/dashboard/selected-courses'>SELECTED COURSES</NavLink></li>
+                                          <li><NavLink to='/dashboard/enrolCoourses'>Enroll COURSES</NavLink></li>
+                                          <li><NavLink to='/dashboard/paymentHistory'>PAYMENT HISTRORY</NavLink></li>
                                     </>
                               }
 
+                              {/* //instructor nav  */}
+                              {
+                                    (itInstructor && !isAdmin) && <>
+                                          <li><NavLink to='/dashboard/instructorhome'>INSTRUCTOR HOME</NavLink></li>
+                                          <li><NavLink to='/dashboard/addRoom'>ADD CLASS</NavLink></li>
+                                          <li><NavLink to='/dashboard/myClasses'>MY CLASSES</NavLink></li>
+                                          
+                                    </>
+
+                              }
+
                               <div className="divider"></div>
+
+                              {/* ---------common navbar ------------ */}
 
                               <li><NavLink to='/'><FaHome />HOME</NavLink></li>
                               <li><NavLink to='/instructors'><FaUsers />Instructors</NavLink></li>
