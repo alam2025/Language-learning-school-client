@@ -4,7 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxioseSequre';
 import useAuth from '../../../hooks/useAuth';
 import useCart from '../../../hooks/useCart';
 
-const CheckoutForm = ({ price, courses }) => {
+const CheckoutForm = ({ price, courses ,selectCourse}) => {
       const stripe = useStripe();
       const elements = useElements();
       const [axiosSecure] = useAxiosSecure()
@@ -14,7 +14,7 @@ const CheckoutForm = ({ price, courses }) => {
       const [processing, setProcessing] = useState(false)
       const [transactionId, setTransactionId] = useState('')
       const [selectedCourse]= useCart()
-      console.log(selectedCourse);
+      
 
 
       useEffect(() => {
@@ -88,10 +88,12 @@ const CheckoutForm = ({ price, courses }) => {
                         name: user?.displayName,
                         transactionId,
                         date: new Date(),
-                        // courseItems: selectedCourse.map(menu => menu.menuItemId),
+                       
                         quantity: courses?.length,
                         status: 'pending',
-                        courseItems: courses?.map(item => item._id),
+                        selectItems: selectCourse?.map(course=>course._id),
+                        
+                        courseItemsId:selectCourse?.map(item=>item.courseId),
                         coursesName: courses?.map(item => item.name)
                   }
                   axiosSecure.post('/payments', payment)
@@ -127,6 +129,9 @@ const CheckoutForm = ({ price, courses }) => {
                   </form>
                   {
                         cardError && <p className=' text-red-500 text-center'>{cardError}</p>
+                  }
+                  {
+                        transactionId && <p className=' text-green-700'>Transaction is complete with TransactionID: {transactionId}</p>
                   }
             </div>
       );
