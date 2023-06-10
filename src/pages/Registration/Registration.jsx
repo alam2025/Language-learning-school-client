@@ -44,7 +44,7 @@ const Registration = () => {
                         const newUser = { name, email, photo: imgUrl }
                         createUser(data.email, data.password)
                               .then(result => {
-                                    axios.post('http://localhost:3000/users', newUser)
+                                    axios.post('https://language-learning-school-server.vercel.app/users', newUser)
                                           .then(res => {
                                                
                                                 setProfile(data.name, response.data.data.display_url)
@@ -64,7 +64,7 @@ const Registration = () => {
             // console.log(data);
             // createUser(data.email, data.password)
             //       .then(result => {
-            //             axios.post('http://localhost:3000/users', user)
+            //             axios.post('https://language-learning-school-server.vercel.app/users', user)
             //                   .then(res => {
             //                         console.log(res);
             //                   })

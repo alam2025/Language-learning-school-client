@@ -7,7 +7,7 @@ const useInstructors=()=>{
             queryKey:['instructors'],
             enabled:!loading ,
             queryFn:async()=>{
-                  const res= await fetch('http://localhost:3000/instructors');
+                  const res= await fetch('https://language-learning-school-server.vercel.app/instructors');
                   return res.json()
             }
       })

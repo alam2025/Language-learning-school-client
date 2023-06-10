@@ -10,7 +10,7 @@ const Banner = () => {
       const {data: banners=[]}=useQuery({
             queryKey:['banners'],
             queryFn: async()=>{
-                  const res= await fetch('http://localhost:3000/banners');
+                  const res= await fetch('https://language-learning-school-server.vercel.app/banners');
                   return res.json()
             }
       })

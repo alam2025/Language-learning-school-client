@@ -56,8 +56,8 @@ const SelectedCourses = () => {
                                     </thead>
                                     <tbody>
                                           {
-                                                selectCourse.map((course,index) => <>
-                                                      <tr key={course._id}>
+                                                selectCourse.map((course,index) => 
+                                                      <tr key={index}>
                                                             <th>
                                                                  {index+1}
                                                             </th>
@@ -83,7 +83,7 @@ const SelectedCourses = () => {
                                                                   <button onClick={()=>handleDelete(course)} className="p-2 rounded-md bg-red-300 cursor-pointer hover:bg-red-400 "><GrTrash  size={30}/></button>
                                                             </th>
                                                       </tr>
-                                                </>)
+                                                )
                                           }
 
 

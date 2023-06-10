@@ -23,7 +23,7 @@ const SocialLogin = () => {
             }).catch(error=>console.log(error.message))
        }
        const LoadData=(user)=>{
-            axios.post('http://localhost:3000/users',user)
+            axios.post('https://language-learning-school-server.vercel.app/users',user)
             .then(res=>{
                   // console.log(res);
                   navigate('/')

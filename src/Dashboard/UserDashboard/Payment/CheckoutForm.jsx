@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxioseSequre';
 import useAuth from '../../../hooks/useAuth';
 import useCart from '../../../hooks/useCart';
+import Swal from 'sweetalert2';
 
 const CheckoutForm = ({ price, courses ,selectCourse}) => {
       const stripe = useStripe();
@@ -51,7 +52,7 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
             }
             else {
                   setCardError('')
-                  console.log('PaymentMethod : ', paymentMethod);
+                  // console.log('PaymentMethod : ', paymentMethod);
             }
 
             setProcessing(true)
@@ -70,9 +71,9 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
             )
 
             if (confirmError) {
-                  console.log(confirmError);
+                 setCardError(confirmError);
             }
-            console.log('payment :',paymentIntent);
+            // console.log('payment :',paymentIntent);
            
             setProcessing(false)
 
@@ -98,9 +99,16 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
                   }
                   axiosSecure.post('/payments', payment)
                         .then(res => {
-                              // console.log(res);
-                            
-                              console.log(res.data);
+                              if(res.data.insertResult.insertedId)
+                              {
+                                    Swal.fire({
+                                          position: 'top-end',
+                                          icon: 'success',
+                                          title: 'Your payment has been received!!!',
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                        })
+                              }
                         })
             }
       };

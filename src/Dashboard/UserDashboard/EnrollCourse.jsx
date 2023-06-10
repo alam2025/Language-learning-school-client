@@ -4,10 +4,23 @@ import useEnroll from '../../hooks/useEnroll';
 import { GrTrash } from "react-icons/gr";
 import useAxiosSecure from '../../hooks/useAxioseSequre';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../hooks/useAuth';
 
 const EnrollCourse = () => {
+      const {user,loading}=useAuth()
       const [enrolls, refetch] = useEnroll()
       const [axiosSecure] = useAxiosSecure();
+
+      // const {data: enrollsCourse=[]}=useQuery({
+      //       queryKey:['getCourses',user?.email],
+      //       queryFn:async()=>{
+      //             const res= await axiosSecure.get(`/enrollCourses?email=${user?.email}`)
+      //             return res.data
+      //       }
+      // })
+
+      // console.log(enrollsCourse);
 
       const handleDelete = enroll => {
             console.log(enroll);
