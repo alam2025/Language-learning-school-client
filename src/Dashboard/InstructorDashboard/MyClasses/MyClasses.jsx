@@ -3,7 +3,7 @@ import SectionTitle from '../../../pages/Shared/SectionTitle';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxioseSequre';
 import { useQuery } from '@tanstack/react-query';
-import { GrDocumentUpdate } from "react-icons/gr";
+import { BsPencil } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
@@ -67,7 +67,7 @@ const MyClasses = () => {
                                                       <td>{myClass?.status}</td>
                                                       <td>{myClass.enroll || 0}</td>
                                                       <td><Link to={`/dashboard/updateClass/${myClass._id}`}>
-                                                            <button><GrDocumentUpdate size={25}></GrDocumentUpdate></button>
+                                                            <button><BsPencil size={25}/></button>
                                                       </Link></td>
                                                       <th>
                                                             <button className="btn btn-ghost btn-xs">details</button>

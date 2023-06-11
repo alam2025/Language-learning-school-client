@@ -62,7 +62,7 @@ const Header = () => {
                   {/* {
                         (!isAdmin && !user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
                   } */}
-                  <li>{user && <button onClick={() => logOut().then(() => { navigate('/') })} className=" ">Logout</button>}</li>
+                  
             </>
       );
 

@@ -208,7 +208,7 @@ const AddClass = () => {
                               </div>
                               <div className=' text-center'>
                                     <button type="submit" className="bg-blue-500 text-white hover:bg-blue-900 px-4 py-3 w-full mt-6  rounded-md">
-                                          Register
+                                          Add
                                     </button>
                               </div>
                         </form>

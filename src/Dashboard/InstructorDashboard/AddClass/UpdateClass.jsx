@@ -6,6 +6,8 @@ import useAxiosSecure from '../../../hooks/useAxioseSequre';
 import { useParams } from 'react-router-dom';
 import MyClasses from '../MyClasses/MyClasses';
 import Swal from 'sweetalert2';
+import SectionTitle from '../../../pages/Shared/SectionTitle';
+import { Helmet } from 'react-helmet';
 
 
 const UpdateClass = () => {
@@ -93,6 +95,8 @@ const UpdateClass = () => {
 
       return (
             <div>
+                  <Helmet><title>Learning Langugae | Update Class</title></Helmet>
+                  <SectionTitle heading={'Update your class'}></SectionTitle>
                   <div className="container mx-auto px-4 my-container bg-slate-100 md:p-20 p-6 rounded-lg mb-20">
                         {/* {
                               error && <p className=' text-red-600'>{error}</p>
