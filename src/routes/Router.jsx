@@ -17,6 +17,7 @@ import Payment from "../Dashboard/UserDashboard/Payment/Payment";
 import PaymentHistory from "../Dashboard/UserDashboard/Payment/PaymentHistory";
 import AddClass from "../Dashboard/InstructorDashboard/AddClass/AddClass";
 import MyClasses from "../Dashboard/InstructorDashboard/MyClasses/MyClasses";
+import UpdateClass from "../Dashboard/InstructorDashboard/AddClass/UpdateClass";
 // import Enrolled from "../Dashboard/InstructorDashboard/Enrolled/Enrolled";
 
 const router = createBrowserRouter([
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
                         path:'myClasses',
                         element:<MyClasses></MyClasses>
                   },
+                  {
+                        path:'updateClass/:id',
+                        element:<UpdateClass/>
+                  }
                  
             ]
       }
