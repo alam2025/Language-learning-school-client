@@ -4,15 +4,76 @@ import { Helmet } from 'react-helmet';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
+import useAxiosSecure from '../../../hooks/useAxioseSequre';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
-      const {user}=useAuth()
+      const [axiosSecure] = useAxiosSecure();
+      const { user } = useAuth()
       const { register,
             handleSubmit,
-            formState: { errors } } = useForm();
+            formState: { errors },
+      reset } = useForm();
+
+
+      const image_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBGG_KEY}`;
 
       const onSubmit = async (data) => {
-            console.log(data);
+            
+            const form = data.target;
+            const formData = new FormData();
+
+            formData.append('image', data.photo[0]);
+            const response = await axios.post(`${image_url}`, formData);
+
+            if (response.data && response.data.data && response.data.data.url) {
+                  if (response.data.success) {
+                        const imageUrl = response.data.data.display_url;
+                        
+
+                        const { name,
+                              instructorName,
+                              email,
+                              category,
+                              available_seats: seats,
+                              price
+                        } = data;
+
+                        const newCourse = {
+                              name,
+                              instructorName,
+                              email,
+                              category,
+                              available_seats: seats,
+                              price,
+                              image: imageUrl,
+                              status:"Pending",
+                              date : new Date()
+                        };
+
+                        axiosSecure.post(`/addClass`, newCourse )
+                              .then(res => {
+                                    if (res.data.insertedId) {
+                                          reset()
+                                          // console.log(res);
+                                         
+                                          Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: 'Your work has been saved',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                          })
+                                    }
+                              })
+
+                        // console.log(newCourse);
+
+                  }
+            }
+
+
       }
 
       const { data: categories = [], refetch } = useQuery({
@@ -116,36 +177,37 @@ const AddClass = () => {
 
 
                                     <div className="mb-4">
-                                          <label htmlFor="number" className="block text-gray-700 font-bold mb-1">
+                                          <label htmlFor="price" className="block text-gray-700 font-bold mb-1">
                                                 Price*
                                           </label>
                                           <input
                                                 type="number"
-                                                id="number"
-                                                name="number"
+                                                id="price"
+                                                name="price"
                                                 placeholder='$'
                                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                                {...register('number', { required: 'Phone number is Required' })}
+                                                {...register('price', { required: ' price is Required' })}
                                           />
-                                          {errors.number && <span className="text-red-500 text-sm">{errors.number.message}</span>}
+                                          {errors.price && <span className="text-red-500 text-sm">{errors.price.message}</span>}
                                     </div>
                                     <div>
                                           <label className='block text-gray-700 font-bold mb-1' htmlFor="category">Category *</label>
                                           <select className='w-full border border-gray-300 rounded-md px-3 py-2' id="category" {...register('category')}>
+                                                <option>Choose a language</option>
                                                 {
-                                                      categories.map(category=><option 
+                                                      categories.map(category => <option
                                                             key={category.id}
-                                                            value="">{category.name}</option>)
+                                                            value={category.name}>{category.name}</option>)
                                                 }
-                                                
+
                                           </select>
                                           {errors.category && <span className="text-red-500 text-sm">{errors.category.message}</span>}
                                     </div>
-                                   
+
 
                               </div>
                               <div className=' text-center'>
-                                    <button type="submit" className="bg-blue-500 text-white px-4 py-3 w-full mt-6  rounded-md">
+                                    <button type="submit" className="bg-blue-500 text-white hover:bg-blue-900 px-4 py-3 w-full mt-6  rounded-md">
                                           Register
                                     </button>
                               </div>

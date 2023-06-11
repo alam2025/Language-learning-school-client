@@ -106,7 +106,7 @@ const Login = () => {
                                           </div>
                                           <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs">Validate</button>
                                        
-                                          <input disabled={disabled} type="submit" value="Login" className="bg-blue-500 text-white px-4 py-2 rounded-md" />
+                                          <input disabled={disabled} type="submit" value="Login" className="btn btn-info  px-4 py-2 rounded-md" />
                                           {/* <button type="submit" >
                                           Login
                                     </button> */}
