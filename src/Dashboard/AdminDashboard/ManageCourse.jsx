@@ -21,7 +21,7 @@ const ManageCourse = () => {
             <div>
                   <SectionTitle heading={'manage courses'}></SectionTitle>
 
-                  <div className=' my-container'>
+                  <div className=' '>
                        <Table courses={courses} refetch={refetch}></Table>
                   </div>
 

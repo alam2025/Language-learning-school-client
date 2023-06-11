@@ -18,6 +18,8 @@ import PaymentHistory from "../Dashboard/UserDashboard/Payment/PaymentHistory";
 import AddClass from "../Dashboard/InstructorDashboard/AddClass/AddClass";
 import MyClasses from "../Dashboard/InstructorDashboard/MyClasses/MyClasses";
 import UpdateClass from "../Dashboard/InstructorDashboard/AddClass/UpdateClass";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 // import Enrolled from "../Dashboard/InstructorDashboard/Enrolled/Enrolled";
 
 const router = createBrowserRouter([
@@ -52,41 +54,45 @@ const router = createBrowserRouter([
             path:'dashboard',
             element:<Dashboard></Dashboard>,
             children:[
+                  // ------admin routes -----------
                   {
                         path:'adminhome',
-                        element:<AdminHome></AdminHome>
+                        element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
                   },
                   {
                         path:'courses',
-                        element:<ManageCourse></ManageCourse>
+                        element:<AdminRoute><ManageCourse></ManageCourse></AdminRoute>
                   },
                   {
                         path:'users',
-                        element:<ManageUsers></ManageUsers>
+                        element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
                   },
+
+                  //..................... users routes .......
                   {
                         path:'enrolCoourses',
-                        element:<EnrollCourse></EnrollCourse>
+                        element:<PrivateRoute><EnrollCourse></EnrollCourse></PrivateRoute>
                   },
                   {
                         path:'paymentHistory',
-                        element:<PaymentHistory></PaymentHistory>
+                        element:<PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
 
                   },
                   {
                         path:'selected-courses',
-                        element:<SelectedCourses></SelectedCourses>
+                        element:<PrivateRoute><SelectedCourses></SelectedCourses></PrivateRoute>
                   },
                   {
                         path:'payment',
-                        element:<Payment></Payment>
+                        element:<PrivateRoute><Payment></Payment></PrivateRoute>
                   },
+                  // -----------instructors routes -----------
                   {
                         path:'instructorhome',
                         element:<InstructorHome></InstructorHome>
                   },
                   {
-                        path:'addRoom',
+                        path:'addClass',
                         element:<AddClass></AddClass>
                   },
                   {

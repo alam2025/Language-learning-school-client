@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import animationData from '../../../public/signIN.json'
 import Lottie from 'react-lottie';
 // import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import SocialLogin from './SocialLogin/SocialLogin';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
@@ -14,18 +14,21 @@ const Login = () => {
       const [disabled, setDisabled] = useState(true)
       const captchaRef = useRef(null)
       const { logIn } = useContext(AuthContext);
-      const navigate = useNavigate()
+      const navigate = useNavigate();
+      const location = useLocation();
       const { register,
             handleSubmit,
             formState: { errors } } = useForm();
       const [error, setError] = useState('');
+
+      const from= location.state?.from.pathname ||'/'
       const onSubmit = (data) => {
             setError('')
             // console.log(data);
             logIn(data.email, data.password)
                   .then(() => {
                         alert('Succesfully sign in')
-                        navigate('/')
+                        navigate(from,{replace:true})
                   }).catch(error => setError(error.message))
       };
 
@@ -37,6 +40,7 @@ const Login = () => {
                   preserveAspectRatio: 'xMidYMid slice'
             }
       };
+     
 
       // 
       const handleValidateCaptcha = (e) => {

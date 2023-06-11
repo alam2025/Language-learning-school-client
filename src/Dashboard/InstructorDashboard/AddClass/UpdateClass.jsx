@@ -25,6 +25,7 @@ const UpdateClass = () => {
       //handle form
       const onSubmit = async (data) => {
             
+            
             Swal.fire({
                   title: 'Are you sure?',
                   text: "You won't be able to revert this!",
@@ -32,7 +33,7 @@ const UpdateClass = () => {
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, Updateit!'
+                  confirmButtonText: 'Yes, Update!'
             }).then((result) => {
                   if (result.isConfirmed) {
                         axiosSecure.patch(`/instructor/class/update/${thisClass._id}?email=${user?.email}`,data)
@@ -86,11 +87,13 @@ const UpdateClass = () => {
       useEffect(() => {
             if (thisClass) {
                   setValue('name', thisClass.name)
-                  setValue('photo', thisClass.image)
+                  
                   setValue('price', thisClass.price)
                   setValue('category', thisClass.category)
             }
-      }, [setValue, thisClass.image])
+      }, [setValue, thisClass])
+
+      console.log(thisClass);
 
 
       return (
@@ -123,20 +126,7 @@ const UpdateClass = () => {
 
 
 
-                                    <div className="mb-4">
-                                          <label htmlFor="photo" className="block text-gray-700 font-bold mb-2">
-                                                Choose a class Image
-                                          </label>
-                                          <input
-                                                type="file"
-
-                                                id="photo"
-                                                {...register('photo')}
-                                                className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.photo ? 'border-red-500' : ''}`}
-                                                placeholder="Select a Image"
-                                          />
-
-                                    </div>
+                                   
 
 
                                     <div className="mb-4">

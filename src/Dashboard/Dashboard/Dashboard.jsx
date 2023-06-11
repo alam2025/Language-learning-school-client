@@ -63,7 +63,7 @@ const Dashboard = () => {
                               {
                                     (itInstructor && !isAdmin) && <>
                                           <li><NavLink to='/dashboard/instructorhome'>INSTRUCTOR HOME</NavLink></li>
-                                          <li><NavLink to='/dashboard/addRoom'>ADD CLASS</NavLink></li>
+                                          <li><NavLink to='/dashboard/addClass'>ADD CLASS</NavLink></li>
                                           <li><NavLink to='/dashboard/myClasses'>MY CLASSES</NavLink></li>
                                           
                                     </>

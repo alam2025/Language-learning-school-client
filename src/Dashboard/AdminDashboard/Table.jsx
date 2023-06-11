@@ -11,33 +11,32 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 
 const Table = ({ courses, refetch }) => {
-      const {user}=useAuth();
+      const { user } = useAuth();
 
       const [axiosSecure] = useAxiosSecure()
       const [modalInfo, setModalInfo] = useState('')
-     
-      const { register, handleSubmit,reset } = useForm();
 
-      
+      const { register, handleSubmit, reset } = useForm();
+
+
 
       const onSubmit = (data) => {
-            const feedback=data.textarea; 
-            
+            const feedback = data.textarea;
 
-            axiosSecure.patch(`/admin/sendFeedback/${modalInfo._id}`,{feedback})
-            .then(res=>{
-                  if(res.data.modifiedCount)
-                  {
-                        reset()
-                        Swal.fire({
-                              position: 'top-end',
-                              icon: 'success',
-                              title: 'Feedback has been delivered.',
-                              showConfirmButton: false,
-                              timer: 1500
-                        })
-                  }
-            })
+
+            axiosSecure.patch(`/admin/sendFeedback/${modalInfo._id}`, { feedback })
+                  .then(res => {
+                        if (res.data.modifiedCount) {
+                              reset()
+                              Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Feedback has been delivered.',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                              })
+                        }
+                  })
       };
 
       const columns = [
@@ -86,7 +85,7 @@ const Table = ({ courses, refetch }) => {
                         <button onClick={() => handleDeny(row)}
                               disabled={row.status === 'Active' || row.status === 'Denied'} className={` btn btn-warning btn-sm`}>
                               {
-                                    (row.status === 'Pending' ||row.status==='Active') ? <ImCross /> : 'Denied'
+                                    (row.status === 'Pending' || row.status === 'Active') ? <ImCross /> : 'Denied'
                               }
                         </button>,
                   sortable: true
@@ -95,23 +94,57 @@ const Table = ({ courses, refetch }) => {
             {
                   name: 'Feedback',
                   selector: row => (
-                        <button onClick={() => {
+                        <button disabled={row.status === 'Active' || row.status === 'Pending'} onClick={() => {
                               window.my_modal_2.showModal();
                               setModalInfo(row)
                         }} className="btn btn-neutral btn-sm" >
-                              
 
-                                    <BsPencil />
-                             
+
+                              <BsPencil />
+
 
                         </button>
                   ),
                   sortable: true
             },
+            {
+                  name: 'Action',
+                  selector: row => (
+                        <button onClick={() => handleDelete(row)}>DELETE</button>
+                  )
+            }
 
 
 
       ]
+
+      const handleDelete = course => {
+            Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        axiosSecure.delete(`/admin/deleteCourse/${course._id}`)
+                        .then(res=>{
+                              if(res.data.deletedCount > 0){
+                                    refetch()
+                                    Swal.fire({
+                                          position: 'top-end',
+                                          icon: 'success',
+                                          title: 'Your work has been saved',
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                        })
+                              }
+                        })
+                  }
+            })
+      }
 
 
       const handleApprove = course => {
@@ -153,7 +186,7 @@ const Table = ({ courses, refetch }) => {
       }
 
 
-     
+
 
       return (
             <>
@@ -175,11 +208,11 @@ const Table = ({ courses, refetch }) => {
                                           id="textarea"
                                           name="textarea"
                                           className="w-full border border-gray-300 rounded-md px-3 py-2"
-                                          {...register('textarea',{required:true})}
+                                          {...register('textarea', { required: true })}
                                     ></textarea>
-                                    
+
                               </div>
-                              
+
 
                               <button className=' bg-violet-600 px-6 py-2 rounded-md hover:bg-violet-950 text-white'>Send</button>
                         </form>

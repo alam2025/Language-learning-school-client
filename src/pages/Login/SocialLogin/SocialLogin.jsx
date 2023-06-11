@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const SocialLogin = () => {
       const { googleSignIn } = useContext(AuthContext);
-      const navigate= useNavigate()
+      const navigate= useNavigate();
+      const location = useLocation();
+      const [error,setError]=useState('')
+
+      const from= location.state?.from?.pathname || '/';
 
 
       const handlegooglesignIn = () => {
+            setError('');
             googleSignIn()
             .then(result=>{
                   const user = result.user;
@@ -20,17 +25,20 @@ const SocialLogin = () => {
                   // console.log(result.user);
                   LoadData(createUser);
                  
-            }).catch(error=>console.log(error.message))
+            }).catch(error=>setError(error.message))
        }
        const LoadData=(user)=>{
             axios.post('https://language-learning-school-server.vercel.app/users',user)
             .then(res=>{
                   // console.log(res);
-                  navigate('/')
+                  navigate(from,{replace:true})
             })
        }
       return (
             <div className=' flex gap-4'>
+                  {
+                        error&&<p>{error}</p>
+                  }
                   <button className="btn btn-circle btn-outline">
                         <FaFacebook size={40} />
                   </button>

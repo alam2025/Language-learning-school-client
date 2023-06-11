@@ -90,7 +90,7 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
                         transactionId,
                         date: new Date(),
                        
-                        quantity: courses?.length,
+                        quantity: selectedCourse?.length,
                         status: 'pending',
                         selectItems: selectCourse?.map(course=>course._id),
                         

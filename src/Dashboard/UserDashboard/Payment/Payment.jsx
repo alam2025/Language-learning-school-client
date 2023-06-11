@@ -12,7 +12,7 @@ console.log(stripePromise);
 const Payment = () => {
       const [courses] = useCourses()
       const [selectCourse]= useCart()
-      const price = selectCourse.reduce((sum, item) => (sum + item.price), 0).toFixed(2)
+      const price = selectCourse.reduce((sum, item) => (sum + parseFloat(item.price)), 0).toFixed(2)
       // console.log(total);
 
 
