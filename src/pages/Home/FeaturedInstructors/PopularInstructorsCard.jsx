@@ -20,25 +20,24 @@ const PopularInstructorsCard = ({ instructor }) => {
             >
                   <div className='image-container relative'>
                         <img
-                              src={instructor.image}
+                              src={instructor.photo}
                               alt=""
                               className={`rounded-full w-[250px] h-[250px] `}
                         />
-                        <div className='flex gap-6 px-8 social-info absolute bottom-0 right-0 bg-white p-4 transform translate-x-100 translate-y-100 transition-all duration-500 ease-in-out' style={hovered ? { transform: 'translateX(0) translateY(0)' } : {}}>
+                        <div className='flex gap-6 px-16 social-info absolute bottom-0 right-0 bg-white p-4 transform translate-x-100 translate-y-100 transition-all duration-500 ease-in-out' style={hovered ? { transform: 'translateX(0) translateY(0)' } : {}}>
                               <button className="btn  btn-circle ">
-                                    <FaFacebook size={40}></FaFacebook>
+                                    <a href={instructor?.facebook}><FaFacebook size={40}></FaFacebook></a>
                               </button>
                               <button className="btn btn-circle ">
-                                    <AiOutlineMail size={40}></AiOutlineMail>
+                                    <a href={`mailto:${instructor?.email}`}><AiOutlineMail size={40}></AiOutlineMail></a>
+                                    
                               </button>
-                              <button className="btn btn-circle">
-                                   <FaInstagram size={40}></FaInstagram>
-                              </button>
+                             
                         </div>
                   </div>
                   <div className='px-8'>
-                        <Link><h3 className='text-2xl hover:text-green-500 font-semibold'>{instructor.name}</h3></Link>
-                        <h3 className='text-lg font-semibold'>{instructor.expertise.join(' and  ')}</h3>
+                        <Link><h3 className='text-2xl hover:text-green-500 font-semibold'>{instructor?.name}</h3></Link>
+                        <h3 className='text-lg font-semibold'>{instructor?.expertise}</h3>
                         <p>{instructor.short_description}</p>
                   </div>
             </div>

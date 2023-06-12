@@ -8,8 +8,11 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import SocialLogin from '../Login/SocialLogin/SocialLogin';
 import axios from 'axios';
+import { useRef } from 'react';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
+      const [processing,setProcessing]=useState(false)
       const { createUser,
             setProfile,
             user,
@@ -18,45 +21,75 @@ const Registration = () => {
 
       const { register,
             handleSubmit,
-            formState: { errors } } = useForm();
+            formState: { errors },
+            watch
+      } = useForm();
       const navigate = useNavigate();
 
       const [error, setError] = useState('');
 
-      const image_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBGG_KEY}`
+      const image_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBGG_KEY}`;
+
+      const password = useRef({});
+      password.current = watch('password', '');
 
       const onSubmit = async (data) => {
             setError('')
+            setProcessing(true);
             const formData = new FormData();
             formData.append('image', data.photo[0]);
 
             const response = await axios.post(`${image_url}`, formData);
-            
+
             if (response.data && response.data.data && response.data.data.url) {
                   if (response.data.success) {
                         const imgUrl = response.data.data.display_url;
                         const { name, email } = data;
                         const newUser = { name, email, photo: imgUrl }
-                        createUser(data.email, data.password)
-                              .then(result => {
-                                    axios.post('https://language-learning-school-server.vercel.app/users', newUser)
-                                          .then(res => {
-                                               
-                                                setProfile(data.name, response.data.data.display_url)
-                                                      .then(() => {
-                                                            alert('User Created. Please Login.')
-                                                            logOut()
-                                                            navigate('/login')
-                                                      }).catch((error) => { setError(error.message) })
-                                          })
+                        if (data.password !== data.confirmPassword) {
+                              setError("Passwords do not match");
+                        }
+                        else {
+                              const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{6,}$/;
+
+                              if (!passwordRegex.test(data.password)) {
+                                    setError("Password must be at least 6 characters long and contain at least one capital letter and one special character");
+                              }
+                              else {
+
+                                    createUser(data.email, data.password)
+                                          .then(result => {
+                                                axios.post('https://language-learning-school-server.vercel.app/users', newUser)
+                                                      .then(res => {
+
+                                                            setProfile(data.name, response.data.data.display_url)
+                                                                  .then(() => {
+                                                                        Swal.fire({
+                                                                              position: 'top-end',
+                                                                              icon: 'success',
+                                                                              title: 'Sign Up success. Please Login!!!',
+                                                                              showConfirmButton: false,
+                                                                              timer: 1500
+                                                                        })
+                                                                        logOut()
+                                                                        navigate('/login')
+                                                                  }).catch((error) => { setError(error.message) })
+                                                      })
 
 
-                                    // console.log(result.user);
-                              }).catch(error => setError(error.message))
+                                                // console.log(result.user);
+                                          }).catch(error => setError(error.message))
+                              }
+
+
+
+                        }
+
 
                   }
             }
-            
+            setProcessing(false)
+
       };
 
       return (
@@ -68,9 +101,7 @@ const Registration = () => {
                   <SectionTitle heading={'Application Form'} subHeading={'Become a Member'}></SectionTitle>
 
                   <div className="container mx-auto px-4 my-container bg-slate-100 md:p-20 p-6 rounded-lg mb-20">
-                        {
-                              error && <p className=' text-red-600'>{error}</p>
-                        }
+
 
                         < form onSubmit={handleSubmit(onSubmit)}>
                               <div className=' grid grid-cols-1 md:grid-cols-2 gap-10'>
@@ -185,8 +216,11 @@ const Registration = () => {
                                     </div>
 
                               </div>
+                              {
+                                    error && <p className=' text-red-600'>{error}</p>
+                              }
                               <div className=' text-center'>
-                                    <button type="submit" className="bg-blue-500 text-white px-4 py-3 w-full mt-6  rounded-md">
+                                    <button disabled={processing} type="submit" className="btn btn-info bg-blue-500 text-white px-4 py-3 w-full mt-6 hover:bg-sky-950 hover:text-white rounded-md">
                                           Register
                                     </button>
                               </div>

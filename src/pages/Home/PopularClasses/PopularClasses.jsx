@@ -7,7 +7,8 @@ import CourseCard from '../../Courses/CourseCard';
 const PopularClasses = () => {
       const [courses]= useCourses()
      
-      const popular= courses.slice(0,6)
+      const filterCourse = courses.filter(course=>course.status==='Active' &&course.status !=='Pending' );
+      const popular= filterCourse.slice(0,6)
 
       return (
             <div className='my-container my-20'>

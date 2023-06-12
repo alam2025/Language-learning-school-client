@@ -8,20 +8,21 @@ import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxioseSequre';
 import Swal from 'sweetalert2';
 
+const hostingToen = import.meta.env.VITE_IMBGG_KEY;
 const AddClass = () => {
       const [axiosSecure] = useAxiosSecure();
       const { user } = useAuth()
       const { register,
             handleSubmit,
             formState: { errors },
-      reset } = useForm();
+            reset } = useForm();
 
 
-      const image_url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMBGG_KEY}`;
+      const image_url = `https://api.imgbb.com/1/upload?key=${hostingToen}`;
 
       const onSubmit = async (data) => {
-            
-            const form = data.target;
+
+
             const formData = new FormData();
 
             formData.append('image', data.photo[0]);
@@ -30,13 +31,13 @@ const AddClass = () => {
             if (response.data && response.data.data && response.data.data.url) {
                   if (response.data.success) {
                         const imageUrl = response.data.data.display_url;
-                        
 
+                        // console.log(data);
                         const { name,
                               instructorName,
                               email,
                               category,
-                              available_seats: seats,
+                              seats,
                               price
                         } = data;
 
@@ -45,19 +46,19 @@ const AddClass = () => {
                               instructorName,
                               email,
                               category,
-                              available_seats: seats,
-                              price,
+                              available_seats: parseFloat(seats),
+                              price: parseFloat(price),
                               image: imageUrl,
-                              status:"Pending",
-                              date : new Date()
+                              status: "Pending",
+                              date: new Date()
                         };
 
-                        axiosSecure.post(`/addClass`, newCourse )
+                        axiosSecure.post(`/addClass`, newCourse)
                               .then(res => {
                                     if (res.data.insertedId) {
                                           reset()
                                           // console.log(res);
-                                         
+
                                           Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'success',
@@ -181,7 +182,7 @@ const AddClass = () => {
                                                 Price*
                                           </label>
                                           <input
-                                                type="number"
+                                                type="text"
                                                 id="price"
                                                 name="price"
                                                 placeholder='$'

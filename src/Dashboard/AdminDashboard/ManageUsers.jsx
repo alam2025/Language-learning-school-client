@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxioseSequre';
 import { useQuery } from '@tanstack/react-query';
 import { GrTrash, GrUserAdmin } from "react-icons/gr";
 import { GiTeacher } from "react-icons/gi";
+import Swal from 'sweetalert2';
 const ManageUsers = () => {
       const [axiosSecure] = useAxiosSecure();
       const { data: users = [], refetch } = useQuery({
@@ -22,7 +23,13 @@ const ManageUsers = () => {
 
                         if (data.data.modifiedCount > 0) {
                               refetch()
-                              alert('OK')
+                              Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: `Now ${user?.name} is an Admin.`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                  })
 
 
                         }
@@ -35,7 +42,13 @@ const ManageUsers = () => {
                   .then(data => {
                         if (data.data.modifiedCount > 0) {
                               refetch();
-                              alert('Now instructor')
+                              Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: `Now ${user?.name} is an Instructor.`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                  })
                         }
                   })
       }
@@ -46,7 +59,13 @@ const ManageUsers = () => {
             .then(res=>{
                   if(res.data.deletedCount>0){
                         refetch()
-                        alert('Deleted')
+                        Swal.fire({
+                              position: 'top-end',
+                              icon: 'success',
+                              title: `${user?.name} is Deleted.`,
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
                   }
                  
                  

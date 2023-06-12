@@ -35,7 +35,7 @@ const PaymentHistory = () => {
                         axiosSecure.delete(`/paymentHistoryDelete/${payment._id}?email=${user?.email}`)
                               .then(res => {
                                     // if(res.data.deletedCount)
-                                    if (res.data.deletedCount) {
+                                    if (res.data.deletedCount > 0) {
                                           refetch()
                                           Swal.fire({
                                                 position: 'top-end',

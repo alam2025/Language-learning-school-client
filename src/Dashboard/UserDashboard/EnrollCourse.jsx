@@ -12,15 +12,7 @@ const EnrollCourse = () => {
       const [enrolls, refetch] = useEnroll()
       const [axiosSecure] = useAxiosSecure();
 
-      // const {data: enrollsCourse=[]}=useQuery({
-      //       queryKey:['getCourses',user?.email],
-      //       queryFn:async()=>{
-      //             const res= await axiosSecure.get(`/enrollCourses?email=${user?.email}`)
-      //             return res.data
-      //       }
-      // })
-
-      // console.log(enrollsCourse);
+      console.log(enrolls);
 
       const handleDelete = enroll => {
             console.log(enroll);

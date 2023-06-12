@@ -13,18 +13,18 @@ import isInstructor from "../../hooks/isInstructor";
 
 const Header = () => {
       const location = useLocation()
-      const { user, logOut,loading } = useAuth()
+      const { user, logOut, loading } = useAuth()
       const [isHovering, setIsHovering] = useState(false);
       const navigate = useNavigate();
-      const [selectedCourse]=useCart()
-      const [isAdmin,isAdminLoading]=useAdmin();
-      const [itInstructor,itInstructorLoading]=isInstructor();
-      
+      const [selectedCourse] = useCart()
+      const [isAdmin, isAdminLoading] = useAdmin();
+      const [itInstructor, itInstructorLoading] = isInstructor();
 
-      if(loading ){
+
+      if (loading) {
             return <LoadingSpinner></LoadingSpinner>
       }
-      
+
       // console.log(selectedCourse);
       const navTabs = (
             <>
@@ -49,12 +49,12 @@ const Header = () => {
                   <li>
                         {(user && !isAdmin && !itInstructor) && <Link to="/dashboard/selected-courses"
                               className={`${location?.pathname === '/dashboard/enrollCourse' ? 'active' : ""} relative mr-10`}>
-                              <span><AiOutlineShoppingCart/></span>
+                              <span><AiOutlineShoppingCart /></span>
                               <div className="badge top-0 -right-8 absolute bg-fuchsia-500 text-white">+{selectedCourse?.length}</div>
                         </Link>}
                   </li>
                   {
-                        (isAdmin && user &&!itInstructor) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
+                        (isAdmin && user && !itInstructor) && <li><Link to='/dashboard/adminhome'>Dashboard</Link></li>
                   }
                   {
                         (itInstructor && user && !isAdmin) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
@@ -62,7 +62,7 @@ const Header = () => {
                   {/* {
                         (!isAdmin && !user) && <li><Link to='/dashboard/instructorhome'>Dashboard</Link></li>
                   } */}
-                  
+
             </>
       );
 
@@ -107,14 +107,16 @@ const Header = () => {
                                           user ? <>
                                                 <div className=" relative">
                                                       {/* <img className=" rounded-full w-[70px]" src={user.photoURL} alt="" /> */}
-                                                      <img
-                                                            style={{ width: '60px', height: '60px' }}
-                                                            className=' bg-slate-600 mr-5 rounded-full'
-                                                            src={user?.photoURL}
-                                                            alt='profile'
-                                                            onMouseEnter={() => setIsHovering(true)}
-                                                            onMouseLeave={() => setIsHovering(false)}
-                                                      />
+                                                      <Link to='/userProfile'>
+                                                            <img
+                                                                  style={{ width: '60px', height: '60px' }}
+                                                                  className=' bg-slate-600 mr-5 rounded-full'
+                                                                  src={user?.photoURL}
+                                                                  alt='profile'
+                                                                  onMouseEnter={() => setIsHovering(true)}
+                                                                  onMouseLeave={() => setIsHovering(false)}
+                                                            />
+                                                      </Link>
                                                       <h6 style={{ width: '120px', marginLeft: '-30px', top: '70px', fontWeight: '700' }} className={`hover-display-name py-2 rounded  absolute text-white pl-2 text-sm bg-black ${isHovering ? ' block' : ' hidden'}`}>
                                                             {user.displayName}
                                                       </h6>

@@ -1,11 +1,14 @@
 import React from 'react';
-
+import logo from '../../assets/logo.png'
 const Footer = () => {
       return (
             <div className=' mt-auto  bg-[#3E3C36] text-center py-28'>
-                  <div className=''>
-                        <h1 className=' text-6xl font-extrabold text-[#969696]'>Newsletter</h1>
-                        <p className=' text-2xl font-bold text-blue-500'>Get the Latest News and Special Offers </p>
+                  <div className=' '>
+                        <div className=' flex flex-col justify-center items-center gap-4'>
+                              <img className=' w-[200px] ' src={logo} alt="" />
+                              <h1 className=' text-6xl font-extrabold text-[#969696]'>Newsletter</h1>
+                              <p className=' text-2xl font-bold text-blue-500'>Get the Latest News and Special Offers </p>
+                        </div>
 
 
 
@@ -54,7 +57,7 @@ const Footer = () => {
                               <div>
                                     <h1 className=' text-3xl font-bold text-white'>Social</h1>
                                     <div className='text-green-500  mt-6 flex flex-col gap-2 text-lg'>
-                                          <a href="/">Facebook</a>
+                                          <a href="https://www.facebook.com/alam2025.bd/">Facebook</a>
                                           <a href="/">Instragram</a>
                                           <a href="/">Twitter</a>
                                     </div>

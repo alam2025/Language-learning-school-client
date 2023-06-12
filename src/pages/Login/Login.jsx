@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import SocialLogin from './SocialLogin/SocialLogin';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import Swal from 'sweetalert2';
 
 const Login = () => {
       const [disabled, setDisabled] = useState(true)
@@ -21,14 +22,24 @@ const Login = () => {
             formState: { errors } } = useForm();
       const [error, setError] = useState('');
 
-      const from= location.state?.from.pathname ||'/'
+      const from = location.state?.from.pathname || '/'
       const onSubmit = (data) => {
             setError('')
             // console.log(data);
             logIn(data.email, data.password)
-                  .then(() => {
-                        alert('Succesfully sign in')
-                        navigate(from,{replace:true})
+                  .then((result) => {
+                        if(result.user){
+                              Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Login Success!!!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                              })
+                        }
+
+                        navigate(from, { replace: true })
+                       
                   }).catch(error => setError(error.message))
       };
 
@@ -40,7 +51,7 @@ const Login = () => {
                   preserveAspectRatio: 'xMidYMid slice'
             }
       };
-     
+
 
       // 
       const handleValidateCaptcha = (e) => {
@@ -109,7 +120,7 @@ const Login = () => {
 
                                           </div>
                                           <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs">Validate</button>
-                                       
+
                                           <input disabled={disabled} type="submit" value="Login" className="btn btn-info  px-4 py-2 rounded-md" />
                                           {/* <button type="submit" >
                                           Login

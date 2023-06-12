@@ -20,6 +20,8 @@ import MyClasses from "../Dashboard/InstructorDashboard/MyClasses/MyClasses";
 import UpdateClass from "../Dashboard/InstructorDashboard/AddClass/UpdateClass";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import UserHome from "../Dashboard/UserDashboard/Payment/UserHome/UserHome";
+import UserProfile from "../Dashboard/UserDashboard/UserProfile/UserProfile";
 // import Enrolled from "../Dashboard/InstructorDashboard/Enrolled/Enrolled";
 
 const router = createBrowserRouter([
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
                   {
                         path:'courses',
                         element:<Courses></Courses>
+                  },
+                  {
+                        path:'userProfile',
+                        element:<UserProfile></UserProfile>
                   }
             ]
       },
@@ -69,6 +75,10 @@ const router = createBrowserRouter([
                   },
 
                   //..................... users routes .......
+                  {
+                       path:'userHome',
+                       element:<PrivateRoute><UserHome></UserHome></PrivateRoute>
+                  },
                   {
                         path:'enrolCoourses',
                         element:<PrivateRoute><EnrollCourse></EnrollCourse></PrivateRoute>
