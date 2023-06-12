@@ -66,10 +66,12 @@ const MyClasses = () => {
                                                             </div>
                                                       </td>
                                                       <td>
-                                                            ${myClass.price}
+                                                            ${myClass?.price}
                                                       </td>
                                                       <td className={`${myClass?.status ==='Pending'&&'text-yellow-700 text-lg'}`}>{(myClass?.status==='Active'&&'Approved') || myClass?.status}</td>
-                                                      <td>{myClass.enroll || 0}</td>
+
+                                                      <td>{myClass?.enroll_student || 0}</td>
+
                                                       <td><Link to={`/dashboard/updateClass/${myClass._id}`}>
                                                             <button><BsPencil size={25} /></button>
                                                       </Link></td>

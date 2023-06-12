@@ -5,6 +5,7 @@ import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
       baseURL: 'https://language-learning-school-server.vercel.app',
+      // baseURL: 'http://localhost:3000',
 });
 const useAxiosSecure = () => {
       const { logOut } = useAuth()

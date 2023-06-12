@@ -116,7 +116,7 @@ const CheckoutForm = ({ price, selectCourse }) => {
 
                                                       axiosSecure.patch(`/reduceSeats/${selectCourse.courseId}`)
                                                             .then(res => {
-                                                                  if (res.datamodifiedCount) {
+                                                                  if (res.data.modifiedCount > 0) {
                                                                         Swal.fire({
                                                                               position: 'top-end',
                                                                               icon: 'success',
