@@ -6,47 +6,48 @@ import useAxiosSecure from '../../hooks/useAxioseSequre';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
+import moment from 'moment/moment';
 
 const EnrollCourse = () => {
       const {user,loading}=useAuth()
       const [enrolls, refetch] = useEnroll()
       const [axiosSecure] = useAxiosSecure();
 
-      console.log(enrolls);
+      
 
-      const handleDelete = enroll => {
-            console.log(enroll);
-            Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                  if (result.isConfirmed) {
-                        axiosSecure.delete(`/enrollCourses/${enroll._id}`)
-                              .then(res => {
-                                    console.log(res.data);
-                                    refetch()
-                                    if (res.data.deletedCount > 0) {
-                                            Swal.fire(
-                                              'Deleted!',
-                                              'Your file has been deleted.',
-                                              'success'
-                                            )
-                                    }
-                              })
+      // const handleDelete = enroll => {
+           
+      //       Swal.fire({
+      //             title: 'Are you sure?',
+      //             text: "You won't be able to revert this!",
+      //             icon: 'warning',
+      //             showCancelButton: true,
+      //             confirmButtonColor: '#3085d6',
+      //             cancelButtonColor: '#d33',
+      //             confirmButtonText: 'Yes, delete it!'
+      //       }).then((result) => {
+      //             if (result.isConfirmed) {
+      //                   axiosSecure.delete(`/enrollCourses/${enroll._id}`)
+      //                         .then(res => {
+      //                               console.log(res.data);
+      //                               refetch()
+      //                               if (res.data.deletedCount > 0) {
+      //                                       Swal.fire(
+      //                                         'Deleted!',
+      //                                         'Your file has been deleted.',
+      //                                         'success'
+      //                                       )
+      //                               }
+      //                         })
 
-                  }
-            })
+      //             }
+      //       })
 
-      }
+      // }
       return (
             <div>
                   <SectionTitle heading={'Enrolled Courses'} ></SectionTitle>
-                  <p>{enrolls.length}</p>
+                  <h1 className=' text-3xl font-bold my-container'>Total Enrollments : {enrolls.length}</h1>
 
                   <div className='mx-3'>
                         <div className="overflow-x-auto">
@@ -62,7 +63,7 @@ const EnrollCourse = () => {
                                                 <th>Name</th>
                                                 <th>Instructor</th>
                                                 <th>Price</th>
-                                                <th>Action</th>
+                                                <th>Date</th>
                                           </tr>
                                     </thead>
                                     <tbody>
@@ -89,13 +90,11 @@ const EnrollCourse = () => {
                                                                   </div>
                                                             </td>
                                                             <td>
-                                                                  {enroll.instructor}
+                                                                  {enroll.instructorName}
                                                             </td>
                                                             <td>${enroll.price}</td>
                                                             <th>
-                                                                  <div >
-                                                                        <button onClick={() => handleDelete(enroll)} className=' bg-red-200 p-2 rounded-md hover:bg-red-400' ><GrTrash size={30}></GrTrash></button>
-                                                                  </div>
+                                                                 {moment(enroll.date).fromNow()}
                                                             </th>
                                                       </tr>
                                                 )

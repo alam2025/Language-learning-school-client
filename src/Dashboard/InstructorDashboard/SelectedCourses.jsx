@@ -1,32 +1,32 @@
 import React from 'react';
 import SectionTitle from '../../pages/Shared/SectionTitle';
 import useCart from '../../hooks/useCart';
-import { GrTrash} from "react-icons/gr";
+import { GrTrash } from "react-icons/gr";
 import useAxiosSecure from '../../hooks/useAxioseSequre';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SelectedCourses = () => {
-      const [selectCourse,refetch] = useCart()
-      const [axiosSecure]=useAxiosSecure();
+      const [selectCourse, refetch] = useCart()
+      const [axiosSecure] = useAxiosSecure();
       // console.log(selectCourse);
 
-      const handleDelete=course=>{
-            
+      const handleDelete = course => {
+
             axiosSecure.delete(`/selectedCourse/${course._id}`)
-            .then(res=>{
-                  if(res.data.deletedCount > 0){
-                        refetch();
-                        Swal.fire({
-                                    
-                              position: 'top-end',
-                              icon: 'success',
-                              title: 'Your work has been saved',
-                              showConfirmButton: false,
-                              timer: 1500
-                            })
-                  }
-            })
+                  .then(res => {
+                        if (res.data.deletedCount > 0) {
+                              refetch();
+                              Swal.fire({
+
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Your work has been saved',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                              })
+                        }
+                  })
 
       }
 
@@ -36,7 +36,7 @@ const SelectedCourses = () => {
                   <div className=' my-container'>
                         <div className=' flex justify-between bg-orange-300 px-10 py-2'>
                               <h1 className=' text-2xl font-bold'>Total Select: {selectCourse.length}</h1>
-                              <Link to={'/dashboard/payment'}><button className=' btn btn-secondary font-bold text-white'>PAY</button></Link>
+                             
                         </div>
                         <div className="overflow-x-auto">
                               <table className="table">
@@ -52,14 +52,15 @@ const SelectedCourses = () => {
                                                 <th>Instructor</th>
                                                 <th>Price</th>
                                                 <th>Delete</th>
+                                                <th>Payment</th>
                                           </tr>
                                     </thead>
                                     <tbody>
                                           {
-                                                selectCourse.map((course,index) => 
+                                                selectCourse.map((course, index) =>
                                                       <tr key={index}>
                                                             <th>
-                                                                 {index+1}
+                                                                  {index + 1}
                                                             </th>
                                                             <td>
                                                                   <div className="flex items-center space-x-3">
@@ -70,18 +71,21 @@ const SelectedCourses = () => {
                                                                         </div>
                                                                         <div>
                                                                               <div className="font-bold">{course.name}</div>
-                                                                             
+
                                                                         </div>
                                                                   </div>
                                                             </td>
                                                             <td>
-                                                                  {course.instructor}
-                                                                  
+                                                                  {course.instructorName}
+
                                                             </td>
                                                             <td className=' text-end'>${course.price}</td>
                                                             <th>
-                                                                  <button onClick={()=>handleDelete(course)} className="p-2 rounded-md bg-red-300 cursor-pointer hover:bg-red-400 "><GrTrash  size={30}/></button>
+                                                                  <button onClick={() => handleDelete(course)} className="p-2 rounded-md bg-red-300 cursor-pointer hover:bg-red-400 "><GrTrash size={30} /></button>
                                                             </th>
+                                                            <td>
+                                                                  <Link to={`/dashboard/payment/${course._id}`}><button className=' btn btn-secondary font-bold text-white'>PAY</button></Link>
+                                                            </td>
                                                       </tr>
                                                 )
                                           }

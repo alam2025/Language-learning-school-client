@@ -5,8 +5,8 @@ import InstructorCard from './InstructorCard';
 
 
 const Instructors = () => {
-      const [instructors] = useInstructors();
-      console.log(instructors);
+      const [instructors,refetch,instructorloading] = useInstructors();
+      // console.log(instructors);
 
       return (
             <div>
@@ -16,6 +16,7 @@ const Instructors = () => {
                               instructors.map(instructor=><InstructorCard
                               key={instructor._id}
                               instructor={instructor}
+                              isLoading={instructorloading}
                               ></InstructorCard>)
                         }
 

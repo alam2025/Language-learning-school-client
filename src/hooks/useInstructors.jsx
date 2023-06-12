@@ -3,7 +3,7 @@ import useAuth from "./useAuth";
 
 const useInstructors=()=>{
       const {loading,user}=useAuth()
-      const {data: instructors=[], refetch}= useQuery({
+      const {data: instructors=[], refetch,isLoading: instructorloading}= useQuery({
             queryKey:['instructors'],
             enabled:!loading ,
             queryFn:async()=>{
@@ -11,7 +11,7 @@ const useInstructors=()=>{
                   return res.json()
             }
       })
-      return [instructors, refetch];
+      return [instructors, refetch,instructorloading];
 }
 
 export default useInstructors;

@@ -5,15 +5,21 @@ import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import useCourses from '../../../hooks/useCourses';
+import { useParams } from 'react-router-dom';
 
 const stripePromise=loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY)
-console.log(stripePromise);
+// console.log(stripePromise);
 
 const Payment = () => {
       const [courses] = useCourses()
       const [selectCourse]= useCart()
-      const price = selectCourse.reduce((sum, item) => (sum + parseFloat(item.price)), 0).toFixed(2)
-      // console.log(total);
+
+      const {id}= useParams();
+      const paymentCourse= selectCourse.find(course=>course._id === id);
+    
+      const price = parseFloat(paymentCourse?.price);
+      // console.log(paymentCourse);
+      
 
 
       return (
@@ -22,7 +28,7 @@ const Payment = () => {
 
                   <div className=' my-container'>
                         <Elements stripe={stripePromise}>
-                              <CheckoutForm price={price} selectCourse={selectCourse} courses={courses}></CheckoutForm>
+                              <CheckoutForm price={price} selectCourse={paymentCourse} courses={courses}></CheckoutForm>
                         </Elements>
 
                   </div>

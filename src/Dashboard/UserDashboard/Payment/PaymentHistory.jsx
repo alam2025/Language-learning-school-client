@@ -90,7 +90,7 @@ const PaymentHistory = () => {
                                                                   <div className="flex items-center space-x-3">
 
                                                                         <div>
-                                                                              <div className="font-bold">{moment(payment.date).fromNow()}</div>
+                                                                              <div className="font-bold">{moment(payment.date).format("DD-MM-YYYY")}</div>
 
                                                                         </div>
                                                                   </div>

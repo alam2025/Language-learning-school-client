@@ -22,6 +22,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import UserHome from "../Dashboard/UserDashboard/Payment/UserHome/UserHome";
 import UserProfile from "../Dashboard/UserDashboard/UserProfile/UserProfile";
+import InstructorCourses from "../pages/Instructors/InstructorCourses";
 // import Enrolled from "../Dashboard/InstructorDashboard/Enrolled/Enrolled";
 
 const router = createBrowserRouter([
@@ -37,6 +38,12 @@ const router = createBrowserRouter([
                   {
                         path: 'instructors',
                         element: <Instructors />
+                  },
+                  {
+                        path:'instructorCourses/:email',
+                        element:<InstructorCourses></InstructorCourses>,
+                        
+
                   },
                   {
                         path:'login',
@@ -93,7 +100,7 @@ const router = createBrowserRouter([
                         element:<PrivateRoute><SelectedCourses></SelectedCourses></PrivateRoute>
                   },
                   {
-                        path:'payment',
+                        path:'payment/:id',
                         element:<PrivateRoute><Payment></Payment></PrivateRoute>
                   },
                   // -----------instructors routes -----------

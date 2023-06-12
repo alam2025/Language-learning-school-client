@@ -10,48 +10,72 @@ import isInstructor from '../../hooks/isInstructor';
 
 
 const CourseCard = ({ course }) => {
-      const [itInstructor]=isInstructor()
+      const [itInstructor] = isInstructor()
       const navigate = useNavigate()
       const { user } = useAuth()
       const [enrolls] = useEnroll()
       const [isAdded, setAdded] = useState(false)
       const [isAdmin] = useAdmin()
       const [axiosSecure] = useAxiosSecure()
-      const [,refetch]=useCart();
-      
+      const [, refetch] = useCart();
+
 
 
 
       const { name, image, instructorName, available_seats, price } = course;
-      console.log(course);
+      // console.log(course);
 
 
       const handleAddCart = course => {
-            const { _id, name, image, instructor, available_seats, price } = course;
+            const { _id, name, 
+                  image, instructorName
+                  , available_seats, price,email  } = course;
             if (user && user?.email) {
-                  const selectedCourse = { courseId: _id, date: new Date(), name, image, instructor, price, email: user?.email, available_seats };
+                  const selectedCourse = { courseId: _id, date: new Date(), name, image, instructorName
+                        , price, email: user?.email, available_seats,instructor_email:email };
                   axiosSecure.post('/selectCourse', selectedCourse)
                         .then(res => {
-                              
+
                               if (res.data.insertedId) {
                                     refetch()
                                     // alert('opk')
-                                   
+
                                     Swal.fire({
-                                    
+
                                           position: 'top-end',
                                           icon: 'success',
                                           title: 'Your work has been saved',
                                           showConfirmButton: false,
                                           timer: 1500
-                                        })
-                                        
+                                    })
+
                               }
                         })
 
             }
             else {
-                  alert('PLease Login to enroll this course.');
+                  let timerInterval
+                  Swal.fire({
+                        title: 'Please Login!',
+                        html: 'Please Wait <b></b> .',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                              Swal.showLoading()
+                              const b = Swal.getHtmlContainer().querySelector('b')
+                              timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                              }, 100)
+                        },
+                        willClose: () => {
+                              clearInterval(timerInterval)
+                        }
+                  }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                              console.log('I was closed by the timer')
+                        }
+                  })
                   navigate('/login')
             }
       }
@@ -65,7 +89,7 @@ const CourseCard = ({ course }) => {
                         <p className=' text-xl text-yellow-500'>Price : ${price}</p>
                   </div>
 
-                  <button disabled={isAdmin === true || itInstructor===true} onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
+                  <button disabled={isAdmin === true || itInstructor === true || available_seats === 0} onClick={() => handleAddCart(course)} className={`mt-auto bg-orange-500 btn rounded-t-none `}>Select Course</button>
             </div>
       );
 };

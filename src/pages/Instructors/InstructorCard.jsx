@@ -1,7 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import LoadingSpinner from '../Shared/LoadingSpinner';
 
-const InstructorCard = ({instructor}) => {
-      console.log(instructor);
+const InstructorCard = ({instructor,isLoading}) => {
+      if(isLoading){
+            return <LoadingSpinner></LoadingSpinner>
+      }
+      // console.log(instructor);
       const {name,photo,email,number_of_courses_taken,courses_taken}= instructor
       return (
             <div className=' rounded-md border shadow-md flex flex-col'>
@@ -19,7 +24,7 @@ const InstructorCard = ({instructor}) => {
                   </div>
 
                  
-                        <button className='mt-auto bg-orange-500 btn rounded-t-none'>See Courses</button>
+                        <Link  to={`/instructorCourses/${email}`}><button className='mt-auto bg-orange-500 btn rounded-t-none'>See Courses</button></Link>
                   
             </div>
       );

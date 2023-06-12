@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import useCart from '../../../hooks/useCart';
 import Swal from 'sweetalert2';
 
-const CheckoutForm = ({ price, courses ,selectCourse}) => {
+const CheckoutForm = ({ price, selectCourse }) => {
       const stripe = useStripe();
       const elements = useElements();
       const [axiosSecure] = useAxiosSecure()
@@ -14,8 +14,9 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
       const { user } = useAuth()
       const [processing, setProcessing] = useState(false)
       const [transactionId, setTransactionId] = useState('')
-      const [selectedCourse]= useCart()
-      
+      // const [selectedCourse]= useCart()
+      // console.log(selectCourse);
+
 
 
       useEffect(() => {
@@ -71,10 +72,10 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
             )
 
             if (confirmError) {
-                 setCardError(confirmError);
+                  setCardError(confirmError);
             }
             // console.log('payment :',paymentIntent);
-           
+
             setProcessing(false)
 
 
@@ -82,32 +83,54 @@ const CheckoutForm = ({ price, courses ,selectCourse}) => {
             if (paymentIntent.status === 'succeeded') {
                   setTransactionId(paymentIntent.id)
                   const transactionId = paymentIntent.id;
-                  
+
                   const payment = {
                         email: user?.email,
                         price,
                         name: user?.displayName,
                         transactionId,
                         date: new Date(),
-                       
-                        quantity: selectedCourse?.length,
+
+
                         status: 'pending',
-                        selectItems: selectCourse?.map(course=>course._id),
-                        
-                        courseItemsId:selectCourse?.map(item=>item.courseId),
-                        coursesName: courses?.map(item => item.name)
+                        selectItem: selectCourse?._id,
+
+                        courseItemId: selectCourse?.courseId,
+                        coursesName: selectCourse.name
                   }
                   axiosSecure.post('/payments', payment)
                         .then(res => {
-                              if(res.data.insertResult.insertedId)
-                              {
-                                    Swal.fire({
-                                          position: 'top-end',
-                                          icon: 'success',
-                                          title: 'Your payment has been received!!!',
-                                          showConfirmButton: false,
-                                          timer: 1500
-                                        })
+
+                              if (res.data.insertedId) {
+
+                                    const enrollMentCourse = {
+                                          ...selectCourse,
+                                          enroll_user_email: user?.email
+                                    }
+
+                                    axiosSecure.post('/paidCourses', enrollMentCourse)
+                                          .then(res => {
+                                                if (res.data.insertedId) {
+                                                      // console.log('enrolled');
+
+
+                                                      axiosSecure.patch(`/reduceSeats/${selectCourse.courseId}`)
+                                                            .then(res => {
+                                                                  if (res.datamodifiedCount) {
+                                                                        Swal.fire({
+                                                                              position: 'top-end',
+                                                                              icon: 'success',
+                                                                              title: 'Your payment has been received!!!',
+                                                                              showConfirmButton: false,
+                                                                              timer: 1500
+                                                                        })
+
+                                                                  }
+                                                            })
+
+
+                                                }
+                                          })
                               }
                         })
             }
