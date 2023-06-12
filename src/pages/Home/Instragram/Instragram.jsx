@@ -18,20 +18,32 @@ const Instragram = () => {
 
                   <Swiper
                         slidesPerView={4}
+
                         spaceBetween={30}
-                        centeredSlides={true}
+
                         pagination={{
                               clickable: true,
                         }}
                         modules={[Pagination]}
                         className="mySwiper mt-24"
+                        breakpoints={{
+                              500: {
+                                    slidesPerView: 2,
+                              },
+                              768: {
+                                    slidesPerView: 3,
+                              },
+                              1024: {
+                                    slidesPerView: 4,
+                              },
+                        }}
                   >
                         <SwiperSlide><img src={ins1} alt="" /></SwiperSlide>
                         <SwiperSlide><img src={ins3} alt="" /></SwiperSlide>
                         <SwiperSlide><img src={ins4} alt="" /></SwiperSlide>
                         <SwiperSlide><img src={ins5} alt="" /></SwiperSlide>
                         <SwiperSlide><img src={ins1} alt="" /></SwiperSlide>
-                        
+
                   </Swiper>
             </div>
       );

@@ -15,7 +15,13 @@
 }
 
 
+.dark {
+  @apply bg-black text-white;
+}
 
+.light {
+  @apply bg-white text-black;
+}
 
 
 /* @media screen and (max-width: 640px) {

@@ -136,6 +136,7 @@ const Table = ({ courses, refetch }) => {
                                     Swal.fire({
                                           position: 'top-end',
                                           icon: 'success',
+                                      
                                           title: 'Your work has been saved',
                                           showConfirmButton: false,
                                           timer: 1500
@@ -177,7 +178,8 @@ const Table = ({ courses, refetch }) => {
                                     icon: 'success',
                                     title: 'Course has been Denied',
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 1500,
+                                    
                               })
 
                         }

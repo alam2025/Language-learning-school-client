@@ -5,7 +5,7 @@ import LibraryBanner from '../../assets/banner/Library-banner.jpg';
 const SectionBanner = ({title,route}) => {
       // const title='ABC'
       return (
-            <div className='my-20'>
+            <div className='mb-20'>
                   <Parallax
                         blur={{ min: -15, max: 15 }}
                         bgImage={LibraryBanner}

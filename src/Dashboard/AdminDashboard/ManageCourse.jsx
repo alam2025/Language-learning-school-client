@@ -20,6 +20,7 @@ const ManageCourse = () => {
       return (
             <div>
                   <SectionTitle heading={'manage courses'}></SectionTitle>
+                  <h1 className=' text-3xl font-bold text-center'>Total Classes : {courses?.length}</h1>
 
                   <div className=' '>
                        <Table courses={courses} refetch={refetch}></Table>
