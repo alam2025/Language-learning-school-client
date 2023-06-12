@@ -18,7 +18,7 @@
 
 
 
-##Features
+## Features
   1. It has a home page 
      * A navbar conditionally show data
      * Banner image upload from server
