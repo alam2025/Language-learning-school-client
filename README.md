@@ -1,16 +1,15 @@
 # Language learning school
-# logo
-  ![Language Learning School](./src/assets/logo.png )
+
 
 ## Links
 1. Live Website
    [Language Leearnng School](https://language-learning-school-83352.web.app/ "Website url") and https://language-learning-school-83352.web.app/ 
 
 2. Client Site git Repository
-   [CLient Site ](https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-alam2025/tree/main/ "Client site") and https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-alam2025/tree/main/ 
+   [CLient Site ](https://github.com/alam2025/Language-learning-school-client/ "Client site") and https://github.com/alam2025/Language-learning-school-client
 
 3. Server site git repository
-   [Server site git ](https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-alam2025/tree/main/ "Server site") and https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-alam2025/tree/main/
+   [Server site git ](https://github.com/alam2025/language-learning-school-server/ "Server site") and https://github.com/alam2025/language-learning-school-server
 
 3. Admin email & password
    * Email : alam12@gmail.com
