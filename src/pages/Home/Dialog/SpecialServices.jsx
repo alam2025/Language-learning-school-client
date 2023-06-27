@@ -6,7 +6,7 @@ import useCourses from '../../../hooks/useCourses';
 const SpecialServices = () => {
       const [courses]=useCourses()
       return (
-            <div className=' grid md:grid-cols-2 gap-4 lg:grid-cols-4 my-container '>
+            <div className=' py-8 bg-base-200 grid md:grid-cols-2 gap-4 lg:grid-cols-4  px-4'>
                   <div className=' flex items-center gap-3'>
                         <div className=' p-4 bg-slate-300 rounded-full'><FaDesktop size={30}></FaDesktop></div>
                         <h1 className=' text-2xl font-semibold'>Online Tutoring</h1>

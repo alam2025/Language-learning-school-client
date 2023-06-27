@@ -12,15 +12,10 @@ import { ThemeContext } from '../../provider/ThemeProvider';
 const Home = () => {
       const { theme, toggleTheme } = useContext(ThemeContext);
       return (
-            <div className={` ${theme === 'dark' ? 'dark' : 'light'}`}>
+            <div >
 
                   <Banner></Banner>
-                  <button
-                        className="px-4 py-2 mt-4 rounded bg-blue-500 text-white"
-                        onClick={toggleTheme}
-                  >
-                        Toggle Theme
-                  </button>
+                 
                   <SpecialServices></SpecialServices>
                   <PopularClasses />
                   <FeaturedInstructors></FeaturedInstructors>

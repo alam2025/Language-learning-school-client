@@ -7,7 +7,7 @@ const FeaturedInstructors = () => {
       const [instructors]= useInstructors()
       
       return (
-            <div className='my-container'>
+            <div className='my-container mb-16'>
                   <SectionTitle heading={"Featured instructors"}></SectionTitle>
 
                   <div className=' grid md:grid-cols-2 lg:grid-cols-3 gap-6'>

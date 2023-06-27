@@ -5,12 +5,16 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxioseSequre';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import MyClasses from './MyClasses/MyClasses';
+import useEnroll from '../../hooks/useEnroll';
 
 
 const InstructorHome = () => {
       
       const { user, loading } = useAuth();
       const [axiosSecure] = useAxiosSecure();
+      
+      
       
 
       const { data: myClasses = [], refetch } = useQuery({
@@ -22,8 +26,16 @@ const InstructorHome = () => {
             }
       })
 
+
+// console.log(myClasses);
       const approved= myClasses.filter(mc=>mc.status ==='Active');
       const pending= myClasses.filter(mc=>mc.status ==='Pending');
+
+      const totalEnroll = myClasses?.reduce((sum, course) => sum + (course?.enroll_student || 0), 0);
+      
+      
+
+
      
       return (
             <div className=' mt-16'>
@@ -46,7 +58,7 @@ const InstructorHome = () => {
 
                         <div className="stat place-items-center">
                               <div className="stat-title">Total Enrolled</div>
-                              <div className="stat-value">1,200</div>
+                              <div className="stat-value">{totalEnroll || 0}</div>
                               
                         </div>
 

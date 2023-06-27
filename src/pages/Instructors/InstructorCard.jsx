@@ -10,7 +10,7 @@ const InstructorCard = ({instructor,isLoading}) => {
       const {name,photo,email,number_of_courses_taken,courses_taken}= instructor
       return (
             <div className=' rounded-md border shadow-md flex flex-col'>
-                  <img src={photo} alt="" className=' rounded-t-md' />
+                  <img src={photo} alt="" className=' w-full h-[200px]' />
                   <div className=' px-10 pt-6 mb-3'>
                         <h1 className=' text-3xl font-bold'>{name}</h1>
                         <p className=' '><span className=' font-semibold'>Email </span> : {email}</p>

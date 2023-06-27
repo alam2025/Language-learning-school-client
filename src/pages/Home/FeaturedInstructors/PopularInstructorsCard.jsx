@@ -4,6 +4,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 const PopularInstructorsCard = ({ instructor }) => {
       const [hovered, setHovered] = useState(false);
+      const { name, photo, expertise, email, facebook } = instructor;
 
       const handleHover = () => {
             setHovered(!hovered);
@@ -14,31 +15,18 @@ const PopularInstructorsCard = ({ instructor }) => {
       // };
       return (
             <div
-                  className=' text-center flex flex-col justify-center items-center py-3 pb-10'
-                  onMouseEnter={handleHover}
-                  onMouseLeave={handleHover}
+                  className=' p-6 border mx-auto shadow overflow-hidden'
             >
-                  <div className='image-container relative'>
-                        <img
-                              src={instructor.photo}
-                              alt=""
-                              className={`rounded-full w-[250px] h-[250px] `}
-                        />
-                        <div className='flex gap-6 px-16 social-info absolute bottom-0 right-0 bg-white p-4 transform translate-x-100 translate-y-100 transition-all duration-500 ease-in-out' style={hovered ? { transform: 'translateX(0) translateY(0)' } : {}}>
-                              <button className="btn  btn-circle ">
-                                    <a href={instructor?.facebook}><FaFacebook size={40}></FaFacebook></a>
-                              </button>
-                              <button className="btn btn-circle ">
-                                    <a href={`mailto:${instructor?.email}`}><AiOutlineMail size={40}></AiOutlineMail></a>
-                                    
-                              </button>
-                             
-                        </div>
+                  <div className=' overflow-hidden'>
+                        <img className='transition duration-1000 hover:transform hover:scale-150   h-[200px]' src={photo} alt="" />
                   </div>
-                  <div className='px-8'>
-                        <Link><h3 className='text-2xl hover:text-green-500 font-semibold'>{instructor?.name}</h3></Link>
-                        <h3 className='text-lg font-semibold'>{instructor?.expertise}</h3>
-                        <p>{instructor.short_description}</p>
+                  <div>
+                        <h1 className=' text-xl font-semibold'>{name}</h1>
+                        <p> {expertise || 'Unknown'}</p>
+                        <div className=' flex flex-col mt-4'>
+                              <p>{email}</p>
+                              <p>{facebook}</p>
+                        </div>
                   </div>
             </div>
       );
